@@ -1,0 +1,104 @@
+import { PrismaService } from '../prisma/prisma.service';
+import { Prisma } from '@prisma/client';
+export declare class ArticlesService {
+    private prisma;
+    constructor(prisma: PrismaService);
+    findAll(includeUnpublished?: boolean): Promise<{
+        id: number;
+        created_at: Date;
+        updated_at: Date;
+        title: string;
+        slug: string;
+        image: string | null;
+        excerpt: string;
+        content: string;
+        tags: string | null;
+        read_time: number;
+        published: boolean;
+        published_at: Date | null;
+    }[]>;
+    findLatest(): Promise<{
+        id: number;
+        created_at: Date;
+        updated_at: Date;
+        title: string;
+        slug: string;
+        image: string | null;
+        excerpt: string;
+        content: string;
+        tags: string | null;
+        read_time: number;
+        published: boolean;
+        published_at: Date | null;
+    }[]>;
+    findOne(slug: string): Promise<{
+        id: number;
+        created_at: Date;
+        updated_at: Date;
+        title: string;
+        slug: string;
+        image: string | null;
+        excerpt: string;
+        content: string;
+        tags: string | null;
+        read_time: number;
+        published: boolean;
+        published_at: Date | null;
+    } | null>;
+    findById(id: number): Promise<{
+        id: number;
+        created_at: Date;
+        updated_at: Date;
+        title: string;
+        slug: string;
+        image: string | null;
+        excerpt: string;
+        content: string;
+        tags: string | null;
+        read_time: number;
+        published: boolean;
+        published_at: Date | null;
+    } | null>;
+    create(data: Prisma.ArticleCreateInput): Promise<{
+        id: number;
+        created_at: Date;
+        updated_at: Date;
+        title: string;
+        slug: string;
+        image: string | null;
+        excerpt: string;
+        content: string;
+        tags: string | null;
+        read_time: number;
+        published: boolean;
+        published_at: Date | null;
+    }>;
+    update(id: number, data: Prisma.ArticleUpdateInput): Promise<{
+        id: number;
+        created_at: Date;
+        updated_at: Date;
+        title: string;
+        slug: string;
+        image: string | null;
+        excerpt: string;
+        content: string;
+        tags: string | null;
+        read_time: number;
+        published: boolean;
+        published_at: Date | null;
+    }>;
+    remove(id: number): Promise<{
+        id: number;
+        created_at: Date;
+        updated_at: Date;
+        title: string;
+        slug: string;
+        image: string | null;
+        excerpt: string;
+        content: string;
+        tags: string | null;
+        read_time: number;
+        published: boolean;
+        published_at: Date | null;
+    }>;
+}

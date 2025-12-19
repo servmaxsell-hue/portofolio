@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model User {
+  id                Int       @id @default(autoincrement())
+  name              String
+  email             String    @unique
+  email_verified_at DateTime?
+  password          String
+  remember_token    String?
+  created_at        DateTime  @default(now())
+  updated_at        DateTime  @updatedAt
+
+  @@map("users")
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  description String
+  image       String?
+  tech_stack  String
+
+
+  github_url  String?
+  live_url    String?
+  category    String   @default("web") // 'web', 'automation', 'marketing', 'fullstack'
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model Article {
+  id           Int       @id @default(autoincrement())
+  title        String
+  slug         String    @unique
+  excerpt      String
+  content      String    // longText in Laravel
+  image        String?
+  tags         String?
+
+
+  read_time    Int       @default(5)
+  published    Boolean   @default(false)
+  published_at DateTime?
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+
+  @@map("articles")
+}
+
+model Service {
+  id               Int      @id @default(autoincrement())
+  title            String
+  slug             String   @unique
+  description      String
+  long_description String?  // longText in Laravel
+  icon             String   @default("code")
+  features         String
+  benefits         String?
+  technologies     String?
+
+  order            Int      @default(0)
+  active           Boolean  @default(true)
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+
+  @@map("services")
+}
+
+model Contact {
+  id         Int       @id @default(autoincrement())
+  name       String
+  email      String
+  subject    String?
+  message    String    // text
+  read       Boolean   @default(false)
+  replied_at DateTime?
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+
+  @@map("contacts")
+}

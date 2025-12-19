@@ -1,0 +1,96 @@
+import { ServicesService } from './services.service';
+import { Prisma } from '@prisma/client';
+export declare class ServicesController {
+    private readonly servicesService;
+    constructor(servicesService: ServicesService);
+    findAll(includeInactive?: string): Promise<{
+        id: number;
+        title: string;
+        slug: string;
+        description: string;
+        long_description: string | null;
+        icon: string;
+        features: string;
+        benefits: string | null;
+        technologies: string | null;
+        order: number;
+        active: boolean;
+        created_at: Date;
+        updated_at: Date;
+    }[]>;
+    findById(id: string): Promise<{
+        id: number;
+        title: string;
+        slug: string;
+        description: string;
+        long_description: string | null;
+        icon: string;
+        features: string;
+        benefits: string | null;
+        technologies: string | null;
+        order: number;
+        active: boolean;
+        created_at: Date;
+        updated_at: Date;
+    }>;
+    findOne(slug: string): Promise<{
+        id: number;
+        title: string;
+        slug: string;
+        description: string;
+        long_description: string | null;
+        icon: string;
+        features: string;
+        benefits: string | null;
+        technologies: string | null;
+        order: number;
+        active: boolean;
+        created_at: Date;
+        updated_at: Date;
+    }>;
+    create(createServiceDto: Prisma.ServiceCreateInput): Promise<{
+        id: number;
+        title: string;
+        slug: string;
+        description: string;
+        long_description: string | null;
+        icon: string;
+        features: string;
+        benefits: string | null;
+        technologies: string | null;
+        order: number;
+        active: boolean;
+        created_at: Date;
+        updated_at: Date;
+    }>;
+    update(id: string, updateServiceDto: Prisma.ServiceUpdateInput): Promise<{
+        id: number;
+        title: string;
+        slug: string;
+        description: string;
+        long_description: string | null;
+        icon: string;
+        features: string;
+        benefits: string | null;
+        technologies: string | null;
+        order: number;
+        active: boolean;
+        created_at: Date;
+        updated_at: Date;
+    }>;
+    remove(id: string): Promise<{
+        id: number;
+        title: string;
+        slug: string;
+        description: string;
+        long_description: string | null;
+        icon: string;
+        features: string;
+        benefits: string | null;
+        technologies: string | null;
+        order: number;
+        active: boolean;
+        created_at: Date;
+        updated_at: Date;
+    }>;
+}
