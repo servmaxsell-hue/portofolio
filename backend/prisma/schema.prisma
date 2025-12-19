@@ -53,15 +53,29 @@ model Article {
   content      String    // longText in Laravel
   image        String?
   tags         String?
-
-
   read_time    Int       @default(5)
+  likes        Int       @default(0)
   published    Boolean   @default(false)
   published_at DateTime?
   created_at   DateTime  @default(now())
   updated_at   DateTime  @updatedAt
+  comments     Comment[]
 
   @@map("articles")
+}
+
+model Comment {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String
+  content    String
+  approved   Boolean  @default(false)
+  article_id Int
+  article    Article  @relation(fields: [article_id], references: [id], onDelete: Cascade)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("comments")
 }
 
 model Service {

@@ -57,4 +57,15 @@ export class ArticlesService {
             where: { id },
         });
     }
+
+    async like(id: number) {
+        return this.prisma.article.update({
+            where: { id },
+            data: {
+                likes: {
+                    increment: 1,
+                },
+            },
+        });
+    }
 }

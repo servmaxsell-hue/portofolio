@@ -12,6 +12,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { UploadModule } from './upload/upload.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { UploadModule } from './upload/upload.module';
     PrismaModule,
     AuthModule,
     UsersModule,
-    UploadModule
+    UploadModule,
+    CommentsModule
   ],
 
 

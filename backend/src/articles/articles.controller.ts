@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, U
 import { ArticlesService } from './articles.service';
 import { Prisma } from '@prisma/client';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { PublishAuthGuard } from '../auth/publish-auth.guard';
 
 @Controller('articles')
 export class ArticlesController {
@@ -35,7 +36,7 @@ export class ArticlesController {
 
 
     @Post()
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(PublishAuthGuard)
     async create(@Body() createArticleDto: Prisma.ArticleCreateInput) {
         try {
             console.log('Creating article:', createArticleDto);
@@ -47,7 +48,7 @@ export class ArticlesController {
     }
 
     @Patch(':id')
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(PublishAuthGuard)
     async update(@Param('id') id: string, @Body() updateArticleDto: Prisma.ArticleUpdateInput) {
         try {
             console.log('Updating article:', id, updateArticleDto);
@@ -69,4 +70,8 @@ export class ArticlesController {
         }
     }
 
+    @Post(':id/like')
+    async like(@Param('id') id: string) {
+        return this.articlesService.like(+id);
+    }
 }
