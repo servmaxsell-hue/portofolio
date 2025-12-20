@@ -16,10 +16,23 @@ export default function BlogPage() {
             try {
                 const data = await api.getArticles();
                 if (data.length > 0) {
-                    setArticles(data.map(a => ({
-                        ...a,
-                        tags: Array.isArray(a.tags) ? a.tags : JSON.parse((a.tags as unknown as string) || '[]')
-                    })));
+                    setArticles(data.map(a => {
+                        const rawTags = a.tags as unknown;
+                        let parsedTags: string[] = [];
+
+                        if (typeof rawTags === 'string') {
+                            parsedTags = rawTags.trim().startsWith('[')
+                                ? JSON.parse(rawTags)
+                                : rawTags.split(',').map((t: string) => t.trim());
+                        } else if (Array.isArray(rawTags)) {
+                            parsedTags = rawTags as string[];
+                        }
+
+                        return {
+                            ...a,
+                            tags: parsedTags
+                        };
+                    }));
                 } else {
                     setArticles(staticArticles.filter(a => a.published).map(a => ({
                         id: a.id,
@@ -35,7 +48,8 @@ export default function BlogPage() {
                         tags: a.tags,
                     })));
                 }
-            } catch {
+            } catch (error) {
+                console.error("Error fetching articles in blog page:", error);
                 setArticles(staticArticles.filter(a => a.published).map(a => ({
                     id: a.id,
                     title: a.title,

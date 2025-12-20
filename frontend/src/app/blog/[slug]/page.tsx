@@ -79,6 +79,21 @@ export default async function ArticlePage({ params }: PageProps) {
         notFound();
     }
 
+    // Parse tags safely
+    const rawTags = article.tags as unknown;
+    let parsedTags: string[] = [];
+    if (typeof rawTags === 'string') {
+        try {
+            parsedTags = (rawTags as string).trim().startsWith('[')
+                ? JSON.parse(rawTags as string)
+                : (rawTags as string).split(',').map((t: string) => t.trim());
+        } catch {
+            parsedTags = [];
+        }
+    } else if (Array.isArray(rawTags)) {
+        parsedTags = rawTags as string[];
+    }
+
     return (
         <div className="pt-32 pb-20">
             <div className="container mx-auto px-6">
@@ -119,7 +134,7 @@ export default async function ArticlePage({ params }: PageProps) {
                             </p>
 
                             <div className="flex flex-wrap gap-2 mb-8">
-                                {(Array.isArray(article?.tags) ? article.tags : JSON.parse((article?.tags as string || '[]'))).map((tag: string) => (
+                                {parsedTags.map((tag: string) => (
                                     <span
                                         key={tag}
                                         className="px-4 py-1.5 text-sm font-medium bg-gray-100 text-gray-700 rounded-full flex items-center gap-2"

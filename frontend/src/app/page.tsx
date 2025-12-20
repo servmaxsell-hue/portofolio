@@ -49,20 +49,9 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchData() {
+      // Fetch projects
       try {
-        // Fetch all data in parallel
-        const [projectsData, articlesData, servicesApiData, settingsData] = await Promise.all([
-          api.getFeaturedProjects(),
-          api.getLatestArticles(),
-          api.getServices(),
-          api.getSettings()
-        ]);
-
-        if (settingsData) {
-          setSettings(settingsData);
-        }
-
-        // Set projects (fallback to static if empty)
+        const projectsData = await api.getFeaturedProjects();
         if (projectsData.length > 0) {
           const normalized = projectsData.map(p => ({
             ...p,
@@ -72,13 +61,32 @@ export default function Home() {
         } else {
           setFeaturedProjects(staticProjects.filter(p => p.featured).slice(0, 3));
         }
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+        setFeaturedProjects(staticProjects.filter(p => p.featured).slice(0, 3));
+      }
 
-        // Set articles (fallback to static if empty)
+      // Fetch articles
+      try {
+        const articlesData = await api.getLatestArticles();
         if (articlesData.length > 0) {
-          const normalized = articlesData.map(a => ({
-            ...a,
-            tags: typeof a.tags === 'string' ? JSON.parse(a.tags || '[]') : (a.tags || [])
-          }));
+          const normalized = articlesData.map(a => {
+            const rawTags = a.tags as unknown;
+            let parsedTags: string[] = [];
+
+            if (typeof rawTags === 'string') {
+              parsedTags = rawTags.trim().startsWith('[')
+                ? JSON.parse(rawTags)
+                : rawTags.split(',').map((t: string) => t.trim());
+            } else if (Array.isArray(rawTags)) {
+              parsedTags = rawTags as string[];
+            }
+
+            return {
+              ...a,
+              tags: parsedTags
+            };
+          });
           setLatestArticles(normalized.slice(0, 2));
         } else {
           setLatestArticles(staticArticles.slice(0, 2).map(a => ({
@@ -87,8 +95,18 @@ export default function Home() {
             created_at: a.published_at || new Date().toISOString()
           })));
         }
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+        setLatestArticles(staticArticles.slice(0, 2).map(a => ({
+          ...a,
+          published_at: a.published_at || new Date().toISOString(),
+          created_at: a.published_at || new Date().toISOString()
+        })));
+      }
 
-        // Set services (fallback to static if empty)
+      // Fetch services
+      try {
+        const servicesApiData = await api.getServices();
         if (servicesApiData.length > 0) {
           const normalized = servicesApiData.map(s => ({
             ...s,
@@ -100,20 +118,22 @@ export default function Home() {
         } else {
           setServicesData(staticServices);
         }
-
       } catch (error) {
-        console.error("Error fetching homepage data", error);
-        // Fallback to static
-        setFeaturedProjects(staticProjects.filter(p => p.featured).slice(0, 3));
-        setLatestArticles(staticArticles.slice(0, 2).map(a => ({
-          ...a,
-          published_at: a.published_at || new Date().toISOString(),
-          created_at: a.published_at || new Date().toISOString()
-        })));
+        console.error("Error fetching services:", error);
         setServicesData(staticServices);
-      } finally {
-        setLoading(false);
       }
+
+      // Fetch settings
+      try {
+        const settingsData = await api.getSettings();
+        if (settingsData) {
+          setSettings(settingsData);
+        }
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+      }
+
+      setLoading(false);
     }
 
     fetchData();
