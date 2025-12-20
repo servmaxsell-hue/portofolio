@@ -29,6 +29,10 @@ export default function LikeButton({ articleId, initialLikes }: LikeButtonProps)
         try {
             setIsAnimating(true);
             const updatedArticle = await api.likeArticle(articleId);
+
+            console.log('Like response:', updatedArticle);
+            console.log('New likes count:', updatedArticle.likes);
+
             setLikes(updatedArticle.likes);
             setIsLiked(true);
 
@@ -52,8 +56,8 @@ export default function LikeButton({ articleId, initialLikes }: LikeButtonProps)
                 onClick={handleLike}
                 disabled={isLiked}
                 className={`relative w-16 h-16 rounded-full flex items-center justify-center transition-all shadow-lg ${isLiked
-                        ? 'bg-red-50 text-red-500 border-2 border-red-500/20 shadow-red-500/10'
-                        : 'bg-white text-gray-400 border border-gray-100 hover:border-red-500/30 hover:text-red-400 group'
+                    ? 'bg-red-50 text-red-500 border-2 border-red-500/20 shadow-red-500/10'
+                    : 'bg-white text-gray-400 border border-gray-100 hover:border-red-500/30 hover:text-red-400 group'
                     }`}
             >
                 <AnimatePresence mode="wait">
