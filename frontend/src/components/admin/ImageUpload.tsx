@@ -120,6 +120,25 @@ export default function ImageUpload({ onUploadSuccess, currentImage, label }: Im
             </div>
 
             {error && <p className="text-red-500 text-[10px] font-medium animate-pulse">{error}</p>}
+
+            {/* Direct URL Input */}
+            <div className="mt-4">
+                <label className="text-xs font-semibold text-gray-500 uppercase block mb-2">
+                    OU URL DIRECTE
+                </label>
+                <input
+                    type="url"
+                    placeholder="https://exemple.com/image.jpg"
+                    value={currentImage && !currentImage.startsWith('data:') ? currentImage : ''}
+                    onChange={(e) => {
+                        const url = e.target.value.trim();
+                        if (url) {
+                            onUploadSuccess(url);
+                        }
+                    }}
+                    className="w-full bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-white text-sm focus:outline-none focus:border-purple-500/50 transition-colors placeholder:text-gray-600"
+                />
+            </div>
         </div>
     );
 }
