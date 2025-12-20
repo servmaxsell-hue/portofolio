@@ -4,10 +4,19 @@ import { PrismaClient } from '@prisma/client';
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
     constructor() {
+        let dbUrl = process.env.DATABASE_URL || '';
+
+        // Nettoyage de sécurité : on enlève les guillemets et les espaces
+        dbUrl = dbUrl.trim().replace(/^["'](.+)["']$/, '$1');
+
+        if (!dbUrl && process.env.VERCEL === '1') {
+            console.error('❌ DATABASE_URL est manquante sur Vercel !');
+        }
+
         super({
             datasources: {
                 db: {
-                    url: process.env.DATABASE_URL
+                    url: dbUrl
                 }
             },
             log: ['error', 'warn'],
@@ -17,9 +26,9 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     async onModuleInit() {
         try {
             await this.$connect();
-            console.log('✅ Connecté à MySQL (Hostinger)');
+            console.log('✅ MySQL Connecté avec succès');
         } catch (error) {
-            console.error('❌ Erreur de connexion MySQL :', error);
+            console.error('❌ Échec de la connexion MySQL :', error.message);
         }
     }
 
