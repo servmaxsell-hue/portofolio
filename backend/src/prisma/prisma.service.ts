@@ -4,14 +4,15 @@ import { PrismaClient } from '@prisma/client';
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
     constructor() {
-        let dbUrl = process.env.DATABASE_URL || '';
-
-        // Nettoyage de sécurité : on enlève les guillemets et les espaces
-        dbUrl = dbUrl.trim().replace(/^["'](.+)["']$/, '$1');
-
-        if (!dbUrl && process.env.VERCEL === '1') {
-            console.error('❌ DATABASE_URL est manquante sur Vercel !');
+        const rawUrl = process.env.DATABASE_URL || '';
+        console.log('--- DEBUG DATABASE ---');
+        console.log('URL présente :', !!rawUrl);
+        if (rawUrl) {
+            console.log('Début de l\'URL :', rawUrl.substring(0, 10));
         }
+
+        // Nettoyage de l'URL
+        const dbUrl = rawUrl.trim().replace(/^["'](.+)["']$/, '$1');
 
         super({
             datasources: {
@@ -26,9 +27,11 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     async onModuleInit() {
         try {
             await this.$connect();
-            console.log('✅ MySQL Connecté avec succès');
+            console.log('✅ MySQL Connecté');
         } catch (error) {
-            console.error('❌ Échec de la connexion MySQL :', error.message);
+            console.error('❌ Crash Connexion MySQL :', error.message);
+            // On jette une erreur plus parlante
+            throw new Error(`Prisma ne peut pas se connecter à Hostinger. Vérifiez votre DATABASE_URL sur Vercel. Détails: ${error.message}`);
         }
     }
 
