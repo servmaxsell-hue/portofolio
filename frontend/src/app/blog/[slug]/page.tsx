@@ -11,6 +11,37 @@ interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
+export async function generateMetadata({ params }: PageProps) {
+    const { slug } = await params;
+    let article;
+    try {
+        article = await api.getArticle(slug);
+    } catch {
+        article = staticArticles.find((a) => a.slug === slug);
+    }
+
+    if (!article) return { title: 'Article non trouvé' };
+
+    return {
+        title: article.title,
+        description: article.excerpt,
+        openGraph: {
+            title: article.title,
+            description: article.excerpt,
+            type: 'article',
+            publishedTime: article.published_at || article.created_at,
+            authors: ['Paul Maxime Dossou'],
+            images: article.image ? [{ url: article.image }] : [],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: article.title,
+            description: article.excerpt,
+            images: article.image ? [article.image] : [],
+        },
+    };
+}
+
 export async function generateStaticParams() {
     try {
         const articles = await api.getArticles();

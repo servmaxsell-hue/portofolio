@@ -1,10 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { api } from "@/lib/api";
 
 interface User {
-    id: string;
+    id: number;
+    name: string;
     email: string;
 }
 
@@ -14,6 +16,7 @@ interface AuthContextType {
     login: (token: string) => void;
     logout: () => void;
     isAuthenticated: boolean;
+    refreshProfile: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -22,6 +25,7 @@ const AuthContext = createContext<AuthContextType>({
     login: () => { },
     logout: () => { },
     isAuthenticated: false,
+    refreshProfile: async () => { },
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -30,15 +34,37 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string | null>(null);
     const router = useRouter();
+    const pathname = usePathname();
+
+    const refreshProfile = useCallback(async () => {
+        const currentToken = localStorage.getItem("adminToken") || token;
+        if (!currentToken) return;
+
+        try {
+            const profile = await api.getProfile(currentToken);
+            if (profile) {
+                setUser(profile);
+            }
+        } catch (error) {
+            console.error("Failed to refresh profile:", error);
+            if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
+                // logout(); // Optional: force logout on invalid token
+            }
+        }
+    }, [token, pathname]);
 
     useEffect(() => {
-        // Check local storage for token
         const storedToken = localStorage.getItem("adminToken");
         if (storedToken) {
             setToken(storedToken);
-            // Ideally decode token or fetch profile here
         }
     }, []);
+
+    useEffect(() => {
+        if (token) {
+            refreshProfile();
+        }
+    }, [token, refreshProfile]);
 
     const login = (newToken: string) => {
         localStorage.setItem("adminToken", newToken);
@@ -61,6 +87,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 login,
                 logout,
                 isAuthenticated: !!token,
+                refreshProfile
             }}
         >
             {children}

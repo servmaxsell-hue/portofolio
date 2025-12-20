@@ -260,6 +260,7 @@ export const skills: Skill[] = [
     { name: "Docker / DevOps", level: 85, category: "technical" },
     { name: "HTML / CSS / JavaScript", level: 95, category: "technical" },
     { name: "n8n / Make.com", level: 90, category: "technical" },
+    { name: "WordPress", level: 85, category: "technical" },
     // Marketing
     { name: "Google Ads", level: 90, category: "marketing" },
     { name: "Microsoft Ads", level: 85, category: "marketing" },

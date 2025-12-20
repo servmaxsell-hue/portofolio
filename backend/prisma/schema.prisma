@@ -110,3 +110,11 @@ model Contact {
 
   @@map("contacts")
 }
+
+model Setting {
+  id    Int    @id @default(autoincrement())
+  key   String @unique
+  value String
+
+  @@map("settings")
+}

@@ -70,7 +70,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
                 {project.description}
             </p>
             <div className="flex flex-wrap gap-2">
-                {(Array.isArray(project.tech_stack) ? project.tech_stack : JSON.parse((project.tech_stack as unknown as string) || '[]')).map((tech: string) => (
+                {(project.tech_stack || []).map((tech: string) => (
                     <span
                         key={tech}
                         className="px-3 py-1 text-xs font-medium bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 rounded-full border border-gray-200"
@@ -114,7 +114,11 @@ export default function ProjectsPage() {
         async function fetchProjects() {
             try {
                 const data = await api.getProjects();
-                setProjects(data.length > 0 ? data : staticProjects);
+                const processed = data.map(p => ({
+                    ...p,
+                    tech_stack: typeof p.tech_stack === 'string' ? JSON.parse(p.tech_stack || '[]') : (p.tech_stack || [])
+                }));
+                setProjects(processed.length > 0 ? processed : staticProjects);
             } catch {
                 // Fallback to static data if API fails
                 setProjects(staticProjects);

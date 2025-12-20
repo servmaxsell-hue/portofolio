@@ -3,7 +3,7 @@
 import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin, FaPaperPlane, FaCheck, FaPhone } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin, FaPaperPlane, FaCheck, FaPhone, FaFacebook } from 'react-icons/fa';
 import api from '@/lib/api';
 
 function ContactFormContent() {
@@ -155,6 +155,14 @@ function ContactFormContent() {
                                     className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0077b5] hover:text-white transition-all"
                                 >
                                     <FaLinkedin size={20} />
+                                </a>
+                                <a
+                                    href="https://www.facebook.com/profile.php?id=61578694404222"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#1877F2] hover:text-white transition-all"
+                                >
+                                    <FaFacebook size={20} />
                                 </a>
                             </div>
                         </div>

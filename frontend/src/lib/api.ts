@@ -148,6 +148,35 @@ export const api = {
                 'Content-Type': 'application/json',
             }
         }),
+
+    // Settings
+    getSettings: () => fetchApi<Record<string, string>>('/settings'),
+    updateSettings: (token: string, settings: Record<string, string>) =>
+        fetchApi<Record<string, string>>('/settings', {
+            method: 'POST',
+            body: JSON.stringify(settings),
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        }),
+
+    // User Profile
+    getProfile: (token: string) =>
+        fetchApi<any>('/users/profile', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        }),
+    updateProfile: (token: string, data: { name?: string; email?: string; password?: string }) =>
+        fetchApi<any>('/users/profile', {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        }),
 };
 
 export default api;

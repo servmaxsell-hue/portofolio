@@ -1,13 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
+import { MailService } from '../mail/mail.service';
 
 @Injectable()
 export class ContactsService {
-    constructor(private prisma: PrismaService) { }
+    constructor(
+        private prisma: PrismaService,
+        private mailService: MailService
+    ) { }
 
     async create(data: Prisma.ContactCreateInput) {
-        return this.prisma.contact.create({ data });
+        const contact = await this.prisma.contact.create({ data });
+
+        // Send email notification
+        await this.mailService.sendContactEmail({
+            name: contact.name,
+            email: contact.email,
+            subject: contact.subject || undefined,
+            message: contact.message
+        });
+
+        return contact;
     }
 
     async findAll() {

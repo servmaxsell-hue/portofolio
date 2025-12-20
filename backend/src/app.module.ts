@@ -13,6 +13,9 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { UploadModule } from './upload/upload.module';
 import { CommentsModule } from './comments/comments.module';
+import { SettingsModule } from './settings/settings.module';
+import { MailModule } from './mail/mail.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -35,7 +38,10 @@ import { CommentsModule } from './comments/comments.module';
     AuthModule,
     UsersModule,
     UploadModule,
-    CommentsModule
+    CommentsModule,
+    SettingsModule,
+    ConfigModule.forRoot({ isGlobal: true }),
+    MailModule
   ],
 
 

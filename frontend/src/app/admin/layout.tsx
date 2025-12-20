@@ -14,7 +14,8 @@ import {
     FaSignOutAlt,
     FaBars,
     FaTimes,
-    FaComments
+    FaComments,
+    FaTools
 } from "react-icons/fa";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -64,6 +65,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         { icon: FaComments, label: "Commentaires", href: "/admin/comments" },
         { icon: FaCogs, label: "Services", href: "/admin/services" },
         { icon: FaEnvelope, label: "Messages", href: "/admin/messages" },
+        { icon: FaTools, label: "Paramètres", href: "/admin/settings" },
     ];
 
     const SidebarContent = ({ isCollapsed = false, onLogout = () => { } }) => (

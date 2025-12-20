@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaFacebook } from 'react-icons/fa';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -44,6 +44,15 @@ const Footer = () => {
                                 aria-label="LinkedIn"
                             >
                                 <FaLinkedin size={28} />
+                            </a>
+                            <a
+                                href="https://www.facebook.com/profile.php?id=61578694404222"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-400 hover:text-[#1877F2] transition-colors transform hover:scale-110"
+                                aria-label="Facebook"
+                            >
+                                <FaFacebook size={28} />
                             </a>
                             <a
                                 href="mailto:dossoumaxime888@gmail.com"
@@ -100,12 +109,6 @@ const Footer = () => {
                                 <Link href="/contact" className="hover:text-[#e94560] transition-colors font-medium">
                                     Formulaire de contact
                                 </Link>
-                            </li>
-                            <li className="pt-4">
-                                <span className="inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-medium">
-                                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-                                    Disponible
-                                </span>
                             </li>
                         </ul>
                     </div>

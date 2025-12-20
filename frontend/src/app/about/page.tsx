@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FaCode, FaAd, FaRobot, FaDatabase, FaDocker, FaPython } from 'react-icons/fa';
+import { FaCode, FaAd, FaRobot, FaDatabase, FaDocker, FaPython, FaWordpress } from 'react-icons/fa';
 import { SiLaravel, SiNextdotjs, SiMake, SiGoogleads } from 'react-icons/si';
 import { skills } from '@/data';
 
@@ -190,6 +190,7 @@ export default function AboutPage() {
                         {[
                             { icon: SiLaravel, name: 'Laravel', color: '#FF2D20' },
                             { icon: SiNextdotjs, name: 'Next.js', color: '#000000' },
+                            { icon: FaWordpress, name: 'WordPress', color: '#21759B' },
                             { icon: FaPython, name: 'Python', color: '#3776AB' },
                             { icon: FaDocker, name: 'Docker', color: '#2496ED' },
                             { icon: FaDatabase, name: 'SQL', color: '#336791' },
