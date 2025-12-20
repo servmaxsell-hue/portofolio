@@ -11,15 +11,17 @@ async function bootstrap() {
     app = await NestFactory.create(AppModule);
 
     // Augmenter la limite pour les images en Base64
-    app.use(express.json({ limit: '15mb' }));
-    app.use(express.urlencoded({ limit: '15mb', extended: true }));
+    // On utilise express pour gérer les limites avant que Nest ne les touche
+    app.use(express.json({ limit: '50mb' }));
+    app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
     app.setGlobalPrefix('api/v1');
+
     app.enableCors({
       origin: '*',
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
       credentials: false,
-      allowedHeaders: 'Content-Type, Accept, Authorization',
+      allowedHeaders: '*',
     });
 
     await app.init();
@@ -28,6 +30,9 @@ async function bootstrap() {
 }
 
 export default async (req: any, res: any) => {
+  // Debug log pour voir quel endpoint est appelé
+  console.log(`[Vercel Request] ${req.method} ${req.url}`);
+
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -38,12 +43,17 @@ export default async (req: any, res: any) => {
   try {
     const instance = await bootstrap();
     const server = instance.getHttpAdapter().getInstance();
+
+    // On s'assure que les headers CORS sont présents même en cas d'erreur
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
     return server(req, res);
   } catch (error) {
-    console.error('CRITICAL ERROR:', error);
+    console.error('CRITICAL BACKEND ERROR:', error);
     return res.status(500).json({
       error: 'Backend error',
-      details: error.message
+      details: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 };

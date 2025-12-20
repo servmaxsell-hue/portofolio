@@ -40,7 +40,18 @@ export class ProjectsController {
     @Post()
     @UseGuards(JwtAuthGuard)
     async create(@Body() createProjectDto: Prisma.ProjectCreateInput) {
-        return this.projectsService.create(createProjectDto);
+        try {
+            console.log('--- CREATING PROJECT ---');
+            console.log('Title:', createProjectDto.title);
+            // Don't log the whole image as it's too big, just the length
+            if (createProjectDto.image) {
+                console.log('Image length:', createProjectDto.image.length);
+            }
+            return await this.projectsService.create(createProjectDto);
+        } catch (error) {
+            console.error('ERROR CREATING PROJECT:', error);
+            throw error; // Rethrow to let Nest handle it (or customize)
+        }
     }
 
     @Patch(':id')

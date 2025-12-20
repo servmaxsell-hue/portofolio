@@ -5,21 +5,23 @@ import { memoryStorage } from 'multer';
 @Controller('upload')
 export class UploadController {
     @Post('image')
-    @UseInterceptors(FileInterceptor('image', {
+    @UseInterceptors(FileInterceptor('file', {
         storage: memoryStorage(),
         fileFilter: (req, file, cb) => {
+            console.log('Incoming file upload:', file?.originalname, file?.mimetype);
             if (!file.mimetype.match(/\/(jpg|jpeg|png|webp)$/)) {
                 return cb(new BadRequestException('Seuls les fichiers images sont autorisés'), false);
             }
             cb(null, true);
         },
         limits: {
-            fileSize: 5 * 1024 * 1024 // 5MB
+            fileSize: 10 * 1024 * 1024 // Increase to 10MB
         }
     }))
     uploadFile(@UploadedFile() file: Express.Multer.File) {
         if (!file) {
-            throw new BadRequestException('Aucun fichier téléchargé');
+            console.error('Upload failed: No file provided in the request');
+            throw new BadRequestException('Aucun fichier téléchargé (champ attendu: "file")');
         }
 
         // Sur Vercel, on transforme l'image en Base64 pour la stocker dans MySQL
