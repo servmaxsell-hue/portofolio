@@ -22,7 +22,6 @@ import { ConfigModule } from '@nestjs/config';
     ServeStaticModule.forRoot({
       rootPath: join(process.cwd(), 'uploads'),
       serveRoot: '/uploads',
-
       serveStaticOptions: {
         setHeaders: (res) => {
           res.setHeader('Access-Control-Allow-Origin', '*');
