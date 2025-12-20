@@ -9,9 +9,14 @@ let app: INestApplication;
 
 async function bootstrap() {
   if (!app) {
+    // FORCE DATABASE URL pour Vercel (si elle est mal lue)
+    if (process.env.VERCEL === '1' && (!process.env.DATABASE_URL || !process.env.DATABASE_URL.startsWith('mysql://'))) {
+      process.env.DATABASE_URL = "mysql://u262725529_portfolio:Paul%400815@srv2024.hstgr.io:3306/u262725529_portfolio";
+      console.log('--- DATABASE_URL FORCÉE ---');
+    }
+
     app = await NestFactory.create(AppModule);
 
-    // On force l'utilisation du filtre d'erreurs
     app.useGlobalFilters(new AllExceptionsFilter());
 
     app.use(express.json({ limit: '50mb' }));
@@ -21,6 +26,7 @@ async function bootstrap() {
       origin: '*',
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
       allowedHeaders: '*',
+      credentials: false
     });
 
     await app.init();
@@ -40,10 +46,11 @@ export default async (req: any, res: any) => {
     const server = instance.getHttpAdapter().getInstance();
     return server(req, res);
   } catch (error) {
+    console.error('CRITICAL ERROR:', error);
     return res.status(500).json({
       message: "CRITICAL BOOTSTRAP ERROR",
       error: error.message,
-      hint: "Check DATABASE_URL in Vercel settings"
+      stack: error.stack
     });
   }
 };
