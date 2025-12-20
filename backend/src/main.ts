@@ -10,9 +10,9 @@ async function bootstrap() {
     app = await NestFactory.create(AppModule);
 
     // Augmenter la limite pour les images en Base64
-    const { json, urlencoded } = require('body-parser');
-    app.use(json({ limit: '10mb' }));
-    app.use(urlencoded({ limit: '10mb', extended: true }));
+    const express = require('express');
+    app.use(express.json({ limit: '10mb' }));
+    app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
     app.setGlobalPrefix('api/v1');
     app.enableCors({
