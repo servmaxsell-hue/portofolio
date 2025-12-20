@@ -26,19 +26,9 @@ async function bootstrap() {
 }
 
 export default async (req: any, res: any) => {
-  // SOLUTION ULTIME CORS : Gestion manuelle des headers
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization'
-  );
-
-  // Répondre immédiatement aux requêtes OPTIONS (Preflight)
+  // Réponse immédiate aux requêtes de test CORS
   if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+    return res.status(200).end();
   }
 
   try {
@@ -46,8 +36,8 @@ export default async (req: any, res: any) => {
     const server = instance.getHttpAdapter().getInstance();
     return server(req, res);
   } catch (error) {
-    console.error('SERVERLESS HANDLER ERROR:', error);
-    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+    console.error('CRITICAL ERROR:', error);
+    return res.status(500).json({ error: 'Backend error', details: error.message });
   }
 };
 
