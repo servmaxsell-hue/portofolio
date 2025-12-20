@@ -83,6 +83,9 @@ export default function LoginPage() {
                             {error}
                         </div>
                     )}
+                    <div className="text-[10px] text-gray-600 text-center mb-2">
+                        API: {process.env.NEXT_PUBLIC_API_URL || 'localhost'}
+                    </div>
 
                     <div className="space-y-4">
                         <div className="relative group">
