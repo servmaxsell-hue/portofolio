@@ -4,7 +4,7 @@ import { memoryStorage } from 'multer';
 
 @Controller('upload')
 export class UploadController {
-    @Post()
+    @Post('image')
     @UseInterceptors(FileInterceptor('image', {
         storage: memoryStorage(),
         fileFilter: (req, file, cb) => {
