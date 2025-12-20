@@ -31,7 +31,7 @@ model Project {
   title       String
   slug        String   @unique
   description String
-  image       String?
+  image       String?  @db.LongText
   tech_stack  String
 
 
@@ -51,8 +51,8 @@ model Article {
   title        String
   slug         String    @unique
   excerpt      String
-  content      String    // longText in Laravel
-  image        String?
+  content      String    @db.LongText
+  image        String?   @db.LongText
   tags         String?
   read_time    Int       @default(5)
   likes        Int       @default(0)
