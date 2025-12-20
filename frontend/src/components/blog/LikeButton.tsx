@@ -18,10 +18,15 @@ export default function LikeButton({ articleId, initialLikes }: LikeButtonProps)
     useEffect(() => {
         // Check local storage to see if article was already liked
         const likedArticles = JSON.parse(localStorage.getItem('liked_articles') || '[]');
-        if (likedArticles.includes(articleId)) {
-            setIsLiked(true);
+        const wasLiked = likedArticles.includes(articleId);
+        setIsLiked(wasLiked);
+
+        // Only update likes count if user hasn't liked yet
+        // This prevents the counter from resetting after a like
+        if (!wasLiked) {
+            setLikes(initialLikes);
         }
-    }, [articleId]);
+    }, [articleId, initialLikes]);
 
     const handleLike = async () => {
         if (isLiked) return;
