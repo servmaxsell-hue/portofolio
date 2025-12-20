@@ -14,13 +14,17 @@ export class AllExceptionsFilter implements ExceptionFilter {
         console.error('--- EXCEPTION DÉTECTÉE ---');
         console.error(exception);
 
+        // On renvoie un objet très détaillé pour le débug
         response.status(status).json({
             statusCode: status,
             message: "ERREUR DÉTAILLÉE",
-            errorName: exception.name,
-            errorMessage: exception.message,
-            prismaError: exception.code, // Pour voir les erreurs Prisma (ex: P2002)
-            stack: process.env.NODE_ENV === 'development' ? undefined : 'Check Vercel Logs'
+            errorDetails: {
+                name: exception.name,
+                message: exception.message,
+                code: exception.code,
+                // On vérifie juste si le lien commence bien (sans afficher le mot de passe)
+                url_check: process.env.DATABASE_URL ? process.env.DATABASE_URL.substring(0, 15) : 'MANQUANT'
+            }
         });
     }
 }
