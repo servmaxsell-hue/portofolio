@@ -38,6 +38,8 @@ export interface Project {
     live_url?: string;
     category: 'web' | 'automation' | 'marketing' | 'fullstack';
     featured: boolean;
+    created_at?: string;
+    updated_at?: string;
 }
 
 // Article types
@@ -54,6 +56,7 @@ export interface Article {
     read_time: number;
     likes: number;
     tags: string[];
+    updated_at?: string;
 }
 
 
