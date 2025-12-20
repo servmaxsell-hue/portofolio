@@ -26,9 +26,14 @@ async function bootstrap() {
 
 // Pour Vercel : exportez le moteur express
 export const handler = async (req: any, res: any) => {
-  const instance = await bootstrap();
-  const server = instance.getHttpAdapter().getInstance();
-  return server(req, res);
+  try {
+    const instance = await bootstrap();
+    const server = instance.getHttpAdapter().getInstance();
+    return server(req, res);
+  } catch (error) {
+    console.error('SERVERLESS HANDLER ERROR:', error);
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
 };
 
 // Pour le développement local
