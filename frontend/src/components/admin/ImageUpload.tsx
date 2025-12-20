@@ -56,13 +56,10 @@ export default function ImageUpload({ onUploadSuccess, currentImage, label }: Im
             if (response.ok) {
                 const data = await response.json();
 
-                // Construct clean URL
-                const api_url = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1';
-                const baseUrl = api_url.split('/api/')[0]; // Remove /api/v1 or similar
-                const fullUrl = `${baseUrl}${data.url}`;
-
-                console.log("Image upload success. File URL:", fullUrl);
-                onUploadSuccess(fullUrl);
+                // L'API retourne maintenant une image Base64 : data:image/...
+                // On l'utilise directement sans manipulation
+                console.log("Image upload success. URL:", data.url.substring(0, 30) + "...");
+                onUploadSuccess(data.url);
             } else {
 
                 const err = await response.json();
