@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaCode, FaLaptopCode, FaPaperPlane } from 'react-icons/fa';
+import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaCode, FaLaptopCode, FaPaperPlane, FaExclamationTriangle, FaLightbulb, FaChartLine } from 'react-icons/fa';
 import api from '@/lib/api';
 import { projects as staticProjects } from '@/data';
 
@@ -161,38 +161,48 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     </div>
                 </div>
 
-                {/* Storytelling Section: Problem - Solution - Result */}
-                <div className="grid gap-8 mb-20">
+                {/* Storytelling Section - Professional Design Enhanced */}
+                <div className="grid gap-8 mb-20 lg:grid-cols-3">
                     {project.problem && (
-                        <div className="bg-red-50 border-l-4 border-red-500 p-8 rounded-r-2xl">
-                            <h3 className="text-xl font-bold text-red-700 mb-4 flex items-center gap-2">
-                                <span className="text-2xl">🚫</span> Le Problème (Avant)
-                            </h3>
-                            <p className="text-gray-700 leading-relaxed font-medium">
+                        <div className="bg-red-50/30 p-8 rounded-2xl border-l-4 border-red-500 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600">
+                                    <FaExclamationTriangle size={20} />
+                                </div>
+                                <h3 className="text-xl font-bold text-gray-900">Le Problème</h3>
+                            </div>
+                            <p className="text-gray-700 leading-relaxed text-lg">
                                 {project.problem}
                             </p>
                         </div>
                     )}
 
                     {project.solution && (
-                        <div className="bg-blue-50 border-l-4 border-blue-500 p-8 rounded-r-2xl">
-                            <h3 className="text-xl font-bold text-blue-700 mb-4 flex items-center gap-2">
-                                <span className="text-2xl">⚡</span> La Solution Technique (Mon Intervention)
-                            </h3>
-                            <p className="text-gray-700 leading-relaxed font-medium">
+                        <div className="bg-blue-50/30 p-8 rounded-2xl border-l-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                                    <FaLightbulb size={20} />
+                                </div>
+                                <h3 className="text-xl font-bold text-gray-900">La Solution</h3>
+                            </div>
+                            <p className="text-gray-700 leading-relaxed text-lg">
                                 {project.solution}
                             </p>
                         </div>
                     )}
 
                     {project.result && (
-                        <div className="bg-green-50 border-l-4 border-green-500 p-8 rounded-r-2xl shadow-lg">
-                            <h3 className="text-xl font-bold text-green-700 mb-4 flex items-center gap-2">
-                                <span className="text-2xl">📈</span> Les Résultats (ROI)
-                            </h3>
-                            <p className="text-gray-800 leading-relaxed font-bold text-lg">
+                        <div className="bg-green-50/30 p-8 rounded-2xl border-l-4 border-green-500 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-24 h-24 bg-green-100 rounded-full translate-x-1/2 -translate-y-1/2 opacity-20" />
+                            <div className="flex items-center gap-3 mb-6 relative z-10">
+                                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600">
+                                    <FaChartLine size={20} />
+                                </div>
+                                <h3 className="text-xl font-bold text-gray-900">Les Résultats</h3>
+                            </div>
+                            <div className="text-gray-800 leading-relaxed font-semibold text-lg relative z-10">
                                 {project.result}
-                            </p>
+                            </div>
                         </div>
                     )}
                 </div>
