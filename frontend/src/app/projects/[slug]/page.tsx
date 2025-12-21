@@ -161,27 +161,40 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     </div>
                 </div>
 
-                {/* Additional Info Section (Placeholder just to make it rich) */}
-                <div className="bg-gray-50 rounded-3xl p-8 md:p-12">
-                    <h2 className="text-2xl font-bold mb-8 text-center">Challenge & Solution</h2>
-                    <div className="grid md:grid-cols-2 gap-12">
-                        <div>
-                            <h3 className="text-xl font-bold mb-4">Le Challenge</h3>
-                            <p className="text-gray-600 leading-relaxed">
-                                Chaque projet présente ses défis uniques. Pour celui-ci, l&apos;objectif principal était de concevoir
-                                une architecture performante capable de supporter une montée en charge rapide tout en maintenant
-                                une expérience utilisateur fluide et intuitive.
+                {/* Storytelling Section: Problem - Solution - Result */}
+                <div className="grid gap-8 mb-20">
+                    {project.problem && (
+                        <div className="bg-red-50 border-l-4 border-red-500 p-8 rounded-r-2xl">
+                            <h3 className="text-xl font-bold text-red-700 mb-4 flex items-center gap-2">
+                                <span className="text-2xl">🚫</span> Le Problème (Avant)
+                            </h3>
+                            <p className="text-gray-700 leading-relaxed font-medium">
+                                {project.problem}
                             </p>
                         </div>
-                        <div>
-                            <h3 className="text-xl font-bold mb-4">La Solution</h3>
-                            <p className="text-gray-600 leading-relaxed">
-                                J&apos;ai opté pour une approche moderne utilisant les dernières technologies du web.
-                                L&apos;accent a été mis sur l&apos;optimisation des performances, l&apos;accessibilité et la maintenabilité
-                                du code à long terme.
+                    )}
+
+                    {project.solution && (
+                        <div className="bg-blue-50 border-l-4 border-blue-500 p-8 rounded-r-2xl">
+                            <h3 className="text-xl font-bold text-blue-700 mb-4 flex items-center gap-2">
+                                <span className="text-2xl">⚡</span> La Solution Technique (Mon Intervention)
+                            </h3>
+                            <p className="text-gray-700 leading-relaxed font-medium">
+                                {project.solution}
                             </p>
                         </div>
-                    </div>
+                    )}
+
+                    {project.result && (
+                        <div className="bg-green-50 border-l-4 border-green-500 p-8 rounded-r-2xl shadow-lg">
+                            <h3 className="text-xl font-bold text-green-700 mb-4 flex items-center gap-2">
+                                <span className="text-2xl">📈</span> Les Résultats (ROI)
+                            </h3>
+                            <p className="text-gray-800 leading-relaxed font-bold text-lg">
+                                {project.result}
+                            </p>
+                        </div>
+                    )}
                 </div>
 
                 {/* CTA */}

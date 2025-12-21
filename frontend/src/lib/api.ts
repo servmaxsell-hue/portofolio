@@ -31,9 +31,12 @@ export interface Project {
     id: number;
     title: string;
     slug: string;
-    description: string;
     image: string;
-    tech_stack: string[];
+    tech_stack: string[] | string;
+    description: string;
+    problem?: string;
+    solution?: string;
+    result?: string;
     github_url?: string;
     live_url?: string;
     category: 'web' | 'automation' | 'marketing' | 'fullstack';

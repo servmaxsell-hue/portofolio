@@ -6,6 +6,9 @@ export interface Project {
     description: string;
     image: string;
     tech_stack: string[];
+    problem?: string;
+    solution?: string;
+    result?: string;
     github_url?: string;
     live_url?: string;
     category: "web" | "automation" | "marketing" | "fullstack";

@@ -25,7 +25,10 @@ model Project {
   id          Int      @id @default(autoincrement())
   title       String
   slug        String   @unique
-  description String
+  description String   @db.LongText
+  problem     String?  @db.LongText
+  solution    String?  @db.LongText
+  result      String?  @db.LongText
   image       String?  @db.LongText
   tech_stack  String
   github_url  String?
