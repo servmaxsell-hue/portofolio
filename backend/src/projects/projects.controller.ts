@@ -36,17 +36,12 @@ export class ProjectsController {
         return project;
     }
 
-    // Admin Routes
     @Post()
     @UseGuards(JwtAuthGuard)
-    async create(@Body() createProjectDto: Prisma.ProjectCreateInput) {
+    async create(@Body() createProjectDto: any) {
         try {
-            console.log('--- CREATING PROJECT ---');
-            console.log('Title:', createProjectDto.title);
-            // Don't log the whole image as it's too big, just the length
-            if (createProjectDto.image) {
-                console.log('Image length:', createProjectDto.image.length);
-            }
+            console.log('--- CREATE PROJECT PAYLOAD ---');
+            console.log(JSON.stringify(createProjectDto, null, 2));
             return await this.projectsService.create(createProjectDto);
         } catch (error) {
             console.error('ERROR CREATING PROJECT:', error);
@@ -56,7 +51,10 @@ export class ProjectsController {
 
     @Patch(':id')
     @UseGuards(JwtAuthGuard)
-    async update(@Param('id') id: string, @Body() updateProjectDto: Prisma.ProjectUpdateInput) {
+    async update(@Param('id') id: string, @Body() updateProjectDto: any) {
+        console.log('--- UPDATE PROJECT PAYLOAD ---');
+        console.log('ID:', id);
+        console.log(JSON.stringify(updateProjectDto, null, 2));
         return this.projectsService.update(+id, updateProjectDto);
     }
 
