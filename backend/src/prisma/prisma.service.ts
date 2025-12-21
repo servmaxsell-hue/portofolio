@@ -22,6 +22,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
             },
             log: ['error', 'warn'],
         });
+        console.log('--- PRISMA CLIENT INITIALIZED ---');
     }
 
     async onModuleInit() {
