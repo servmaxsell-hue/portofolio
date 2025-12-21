@@ -23,13 +23,31 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         return { title: 'Projet non trouvé' };
     }
 
+    // Parse tech_stack for keywords
+    const techStack = Array.isArray(project.tech_stack)
+        ? project.tech_stack
+        : JSON.parse((project.tech_stack as unknown as string) || '[]');
+
     return {
-        title: `${project.title} | Paul Maxime Dossou`,
+        title: `${project.title}`,
         description: project.description,
+        keywords: [...techStack, 'Portfolio', 'Projet Automatisation', 'Étude de cas', project.category],
+        authors: [{ name: 'Paul Maxime Dossou', url: 'https://paulmaximedossou.com' }],
         openGraph: {
             title: project.title,
             description: project.description,
-            images: [project.image],
+            url: `https://paulmaximedossou.com/projects/${slug}`,
+            type: 'article',
+            images: project.image ? [{ url: project.image, width: 1200, height: 630 }] : [],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: project.title,
+            description: project.description,
+            images: project.image ? [project.image] : [],
+        },
+        alternates: {
+            canonical: `https://paulmaximedossou.com/projects/${slug}`,
         },
     };
 }

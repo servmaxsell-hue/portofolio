@@ -22,22 +22,39 @@ export async function generateMetadata({ params }: PageProps) {
 
     if (!article) return { title: 'Article non trouvé' };
 
+    // Parse tags for keywords
+    const rawTags = article.tags as unknown;
+    let tags: string[] = [];
+    if (typeof rawTags === 'string') {
+        tags = rawTags.trim().startsWith('[')
+            ? JSON.parse(rawTags)
+            : rawTags.split(',').map(t => t.trim());
+    } else if (Array.isArray(rawTags)) {
+        tags = rawTags;
+    }
+
     return {
         title: article.title,
         description: article.excerpt,
+        keywords: [...tags, 'Blog Automatisation', 'Développement Web', 'Paul Maxime Dossou'],
+        authors: [{ name: 'Paul Maxime Dossou', url: 'https://paulmaximedossou.com' }],
         openGraph: {
             title: article.title,
             description: article.excerpt,
             type: 'article',
             publishedTime: article.published_at || article.created_at,
             authors: ['Paul Maxime Dossou'],
-            images: article.image ? [{ url: article.image }] : [],
+            images: article.image ? [{ url: article.image, width: 1200, height: 630 }] : [],
+            url: `https://paulmaximedossou.com/blog/${slug}`,
         },
         twitter: {
             card: 'summary_large_image',
             title: article.title,
             description: article.excerpt,
             images: article.image ? [article.image] : [],
+        },
+        alternates: {
+            canonical: `https://paulmaximedossou.com/blog/${slug}`,
         },
     };
 }
