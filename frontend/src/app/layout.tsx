@@ -11,7 +11,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://maximedossou.com'),
+  metadataBase: new URL('https://paulmaximedossou.com'),
   title: {
     default: "Paul Maxime Dossou | Expert Développeur Fullstack & Marketing Digital",
     template: "%s | Paul Maxime Dossou"
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "Paul Maxime Dossou",
     "Portfolio Développeur Web"
   ],
-  authors: [{ name: "Paul Maxime Dossou", url: "https://maximedossou.com" }],
+  authors: [{ name: "Paul Maxime Dossou", url: "https://paulmaximedossou.com" }],
   creator: "Paul Maxime Dossou",
   publisher: "Paul Maxime Dossou",
   formatDetection: {
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://maximedossou.com",
+    url: "https://paulmaximedossou.com",
     siteName: "Paul Maxime Dossou - Solutions Web & Marketing",
     title: "Paul Maxime Dossou | Expert Solutions Digitales",
     description: "Développement d'applications Web performantes et stratégies Marketing Digital ROI-driven. Découvrez mon expertise en Laravel, Next.js et Google Ads.",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     images: ["/logo.png"],
   },
   alternates: {
-    canonical: "https://maximedossou.com",
+    canonical: "https://paulmaximedossou.com",
   },
   category: "technology",
 };
@@ -86,9 +86,9 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Paul Maxime Dossou",
-  url: "https://maximedossou.com",
-  logo: "https://maximedossou.com/logo.png",
-  image: "https://maximedossou.com/logo.png",
+  url: "https://paulmaximedossou.com",
+  logo: "https://paulmaximedossou.com/logo.png",
+  image: "https://paulmaximedossou.com/logo.png",
   sameAs: [
     "https://github.com/Maxience",
     "https://www.linkedin.com/in/paul-maxime-dossou-88a516258/"
