@@ -372,7 +372,7 @@ export default function Home() {
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {(project.tech_stack || []).slice(0, 3).map((tech: string) => (
+                    {(Array.isArray(project.tech_stack) ? project.tech_stack : JSON.parse((project.tech_stack as unknown as string) || '[]')).slice(0, 3).map((tech: string) => (
                       <span
                         key={tech}
                         className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-full"
@@ -380,9 +380,9 @@ export default function Home() {
                         {tech}
                       </span>
                     ))}
-                    {(project.tech_stack || []).length > 3 && (
+                    {(Array.isArray(project.tech_stack) ? project.tech_stack : JSON.parse((project.tech_stack as unknown as string) || '[]')).length > 3 && (
                       <span className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-500 rounded-full">
-                        +{(project.tech_stack || []).length - 3}
+                        +{(Array.isArray(project.tech_stack) ? project.tech_stack : JSON.parse((project.tech_stack as unknown as string) || '[]')).length - 3}
                       </span>
                     )}
                   </div>

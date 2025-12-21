@@ -70,7 +70,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
                 {project.description}
             </p>
             <div className="flex flex-wrap gap-2">
-                {(project.tech_stack || []).map((tech: string) => (
+                {(Array.isArray(project.tech_stack) ? project.tech_stack : JSON.parse((project.tech_stack as unknown as string) || '[]')).map((tech: string) => (
                     <span
                         key={tech}
                         className="px-3 py-1 text-xs font-medium bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 rounded-full border border-gray-200"
