@@ -21,6 +21,9 @@ import { useAuth } from "@/context/AuthContext";
 interface ProjectFormData {
     title: string;
     description: string;
+    problem: string;
+    solution: string;
+    result: string;
     image: string;
     tech_stack: string[];
     github_url: string;
@@ -33,6 +36,9 @@ interface ProjectFormData {
 const initialFormData: ProjectFormData = {
     title: "",
     description: "",
+    problem: "",
+    solution: "",
+    result: "",
     image: "",
     tech_stack: [],
     github_url: "",
@@ -71,6 +77,9 @@ function ProjectEditorContent() {
                 setFormData({
                     title: project.title || "",
                     description: project.description || "",
+                    problem: project.problem || "",
+                    solution: project.solution || "",
+                    result: project.result || "",
                     image: project.image || "",
                     tech_stack: Array.isArray(project.tech_stack) ? project.tech_stack : JSON.parse(project.tech_stack || '[]'),
                     github_url: project.github_url || "",
@@ -218,6 +227,42 @@ function ProjectEditorContent() {
                                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                                 className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-blue-500/50 transition-colors min-h-[150px] resize-none"
                                 placeholder="Décrivez le projet, les défis et les solutions apportées..."
+                            />
+                        </div>
+
+                        <div className="space-y-4">
+                            <label className="text-sm font-medium text-red-400 flex items-center gap-2">
+                                🚫 Le Problème (Avant)
+                            </label>
+                            <textarea
+                                value={formData.problem}
+                                onChange={(e) => setFormData({ ...formData, problem: e.target.value })}
+                                className="w-full bg-black/40 border border-red-500/20 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-red-500/50 transition-colors min-h-[120px] resize-none"
+                                placeholder="Décrivez la douleur, la perte financière, le chaos avant votre intervention..."
+                            />
+                        </div>
+
+                        <div className="space-y-4">
+                            <label className="text-sm font-medium text-blue-400 flex items-center gap-2">
+                                ⚡ La Solution (Votre Intervention)
+                            </label>
+                            <textarea
+                                value={formData.solution}
+                                onChange={(e) => setFormData({ ...formData, solution: e.target.value })}
+                                className="w-full bg-black/40 border border-blue-500/20 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-blue-500/50 transition-colors min-h-[120px] resize-none"
+                                placeholder="Votre intervention technique précise, les étapes, les outils utilisés..."
+                            />
+                        </div>
+
+                        <div className="space-y-4">
+                            <label className="text-sm font-medium text-green-400 flex items-center gap-2">
+                                📈 Les Résultats (ROI)
+                            </label>
+                            <textarea
+                                value={formData.result}
+                                onChange={(e) => setFormData({ ...formData, result: e.target.value })}
+                                className="w-full bg-black/40 border border-green-500/20 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-green-500/50 transition-colors min-h-[120px] resize-none"
+                                placeholder="Les gains chiffrés (temps, argent, sérénité), le ROI mesurable..."
                             />
                         </div>
 
