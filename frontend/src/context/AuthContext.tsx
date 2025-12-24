@@ -36,6 +36,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const router = useRouter();
     const pathname = usePathname();
 
+    const login = useCallback((newToken: string) => {
+        localStorage.setItem("adminToken", newToken);
+        setToken(newToken);
+        router.push("/admin/dashboard");
+    }, [router]);
+
+    const logout = useCallback(() => {
+        localStorage.removeItem("adminToken");
+        setToken(null);
+        setUser(null);
+        router.push("/admin/login");
+    }, [router]);
+
     const refreshProfile = useCallback(async () => {
         const currentToken = localStorage.getItem("adminToken") || token;
         if (!currentToken) return;
@@ -45,13 +58,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             if (profile) {
                 setUser(profile);
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error("Failed to refresh profile:", error);
-            if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
-                // logout(); // Optional: force logout on invalid token
+            // Check if error message contains 401 (API Error: 401)
+            if (error.message && error.message.includes("401")) {
+                console.warn("Token expired or invalid, logging out...");
+                logout();
             }
         }
-    }, [token, pathname]);
+    },
+        [token, pathname, logout]
+    );
 
     useEffect(() => {
         const storedToken = localStorage.getItem("adminToken");
@@ -66,18 +83,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
     }, [token, refreshProfile]);
 
-    const login = (newToken: string) => {
-        localStorage.setItem("adminToken", newToken);
-        setToken(newToken);
-        router.push("/admin/dashboard");
-    };
 
-    const logout = () => {
-        localStorage.removeItem("adminToken");
-        setToken(null);
-        setUser(null);
-        router.push("/admin/login");
-    };
 
     return (
         <AuthContext.Provider
