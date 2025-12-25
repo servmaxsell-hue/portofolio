@@ -1,0 +1,192 @@
+
+> frontend@0.1.0 lint
+> eslint
+
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/server.js
+  1:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:19  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  3:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/articles/editor/page.tsx
+    5:10   warning  'motion' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+    9:5    warning  'FaTrash' is defined but never used                                                                              @typescript-eslint/no-unused-vars
+   14:5    warning  'FaTimesCircle' is defined but never used                                                                        @typescript-eslint/no-unused-vars
+   18:8    warning  'api' is defined but never used                                                                                  @typescript-eslint/no-unused-vars
+   47:8    warning  React Hook useEffect has a missing dependency: 'fetchArticle'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  101:25   warning  '_' is assigned a value but never used                                                                           @typescript-eslint/no-unused-vars
+  101:28   warning  'published_at' is assigned a value but never used                                                                @typescript-eslint/no-unused-vars
+  101:42   warning  'created_at' is assigned a value but never used                                                                  @typescript-eslint/no-unused-vars
+  101:54   warning  'updated_at' is assigned a value but never used                                                                  @typescript-eslint/no-unused-vars
+  101:95   error    Unexpected any. Specify a different type                                                                         @typescript-eslint/no-explicit-any
+  139:61   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                  react/no-unescaped-entities
+  179:119  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                  react/no-unescaped-entities
+  268:78   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                  react/no-unescaped-entities
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/articles/page.tsx
+  127:57  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/comments/page.tsx
+   4:18  warning  'AnimatePresence' is defined but never used                                                                       @typescript-eslint/no-unused-vars
+   5:61  warning  'FaClock' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+   5:70  warning  'FaCheckCircle' is defined but never used                                                                         @typescript-eslint/no-unused-vars
+   5:85  warning  'FaExclamationCircle' is defined but never used                                                                   @typescript-eslint/no-unused-vars
+  20:8   warning  React Hook useEffect has a missing dependency: 'fetchComments'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  26:25  error    Unexpected any. Specify a different type                                                                          @typescript-eslint/no-explicit-any
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/dashboard/page.tsx
+    8:41   warning  'FaCogs' is defined but never used                                                                         @typescript-eslint/no-unused-vars
+    8:106  warning  'FaUser' is defined but never used                                                                         @typescript-eslint/no-unused-vars
+    8:114  warning  'FaCode' is defined but never used                                                                         @typescript-eslint/no-unused-vars
+   16:11   error    Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+   54:59   error    Unexpected any. Specify a different type                                                                   @typescript-eslint/no-explicit-any
+  131:8    warning  React Hook useEffect has a missing dependency: 'logout'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  145:74   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                            react/no-unescaped-entities
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/layout.tsx
+   43:9   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/layout.tsx:43:9
+  41 |     // Close mobile menu on route change
+  42 |     useEffect(() => {
+> 43 |         setIsMobileMenuOpen(false);
+     |         ^^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  44 |     }, [pathname]);
+  45 |
+  46 |     // Skip layout for login page - MUST BE AFTER HOOKS                                                                                                                                                                                                                                                                            react-hooks/set-state-in-effect
+  123:18  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/layout.tsx:123:18
+  121 |                 className="fixed left-0 top-0 h-full bg-[#111] border-r border-white/5 z-40 hidden md:flex flex-col overflow-hidden"
+  122 |             >
+> 123 |                 <SidebarContent isCollapsed={!isSidebarOpen} onLogout={logout} />
+      |                  ^^^^^^^^^^^^^^ This component is created during render
+  124 |             </motion.aside>
+  125 |
+  126 |             {/* Mobile Sidebar Overlay */}
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/layout.tsx:71:28
+   69 |     ];
+   70 |
+>  71 |     const SidebarContent = ({ isCollapsed = false, onLogout = () => { } }) => (
+      |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  72 |         <>
+      | ^^^^^^^^^^
+>  73 |             <div className="p-6 flex items-center gap-3 border-b border-white/5">
+      …
+      | ^^^^^^^^^^
+> 112 |         </>
+      | ^^^^^^^^^^
+> 113 |     );
+      | ^^^^^^ The component is created during render here
+  114 |
+  115 |     return (
+  116 |         <div className="min-h-screen bg-[#0a0a0a] text-white flex">  react-hooks/static-components
+  144:18  error  Error: Cannot create components during render
+
+Components created during render will reset their state each time they are created. Declare components outside of render.
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/layout.tsx:144:18
+  142 |                     <FaTimes size={20} />
+  143 |                 </div>
+> 144 |                 <SidebarContent onLogout={logout} />
+      |                  ^^^^^^^^^^^^^^ This component is created during render
+  145 |             </motion.aside>
+  146 |
+  147 |             {/* Main Content */}
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/layout.tsx:71:28
+   69 |     ];
+   70 |
+>  71 |     const SidebarContent = ({ isCollapsed = false, onLogout = () => { } }) => (
+      |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>  72 |         <>
+      | ^^^^^^^^^^
+>  73 |             <div className="p-6 flex items-center gap-3 border-b border-white/5">
+      …
+      | ^^^^^^^^^^
+> 112 |         </>
+      | ^^^^^^^^^^
+> 113 |     );
+      | ^^^^^^ The component is created during render here
+  114 |
+  115 |     return (
+  116 |         <div className="min-h-screen bg-[#0a0a0a] text-white flex">                                                                                                                           react-hooks/static-components
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/messages/page.tsx
+  37:8  warning  React Hook useEffect has a missing dependency: 'fetchMessages'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/projects/editor/page.tsx
+  10:5  warning  'FaPlus' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+  66:8  warning  React Hook useEffect has a missing dependency: 'fetchProject'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/projects/page.tsx
+   10:5   warning  'FaEye' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+   16:5   warning  'FaLayerGroup' is defined but never used                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+  124:57  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/services/editor/page.tsx
+   7:5  warning  'FaSave' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+  13:5  warning  'FaCheckCircle' is defined but never used                                                                        @typescript-eslint/no-unused-vars
+  65:8  warning  React Hook useEffect has a missing dependency: 'fetchService'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/admin/settings/page.tsx
+   86:18  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+  119:18  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/blog/[slug]/page.tsx
+  168:37  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/blog/page.tsx
+  114:45  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  190:41  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/page.tsx
+  7:24  warning  'FaGithub' is defined but never used    @typescript-eslint/no-unused-vars
+  7:34  warning  'FaLinkedin' is defined but never used  @typescript-eslint/no-unused-vars
+  7:46  warning  'FaTwitter' is defined but never used   @typescript-eslint/no-unused-vars
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/projects/[slug]/page.tsx
+  166:33  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/projects/page.tsx
+  34:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/services/[slug]/page.tsx
+  4:10  warning  'FaArrowLeft' is defined but never used  @typescript-eslint/no-unused-vars
+  4:84  warning  'FaQuoteLeft' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/app/services/page.tsx
+    6:84   warning  'FaHandshake' is defined but never used                          @typescript-eslint/no-unused-vars
+    6:97   warning  'FaLightbulb' is defined but never used                          @typescript-eslint/no-unused-vars
+    6:110  warning  'FaCogs' is defined but never used                               @typescript-eslint/no-unused-vars
+   72:55   error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  118:30   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/components/TechMarquee.tsx
+  4:10  warning  'FaHtml5' is defined but never used     @typescript-eslint/no-unused-vars
+  4:19  warning  'FaCss3Alt' is defined but never used   @typescript-eslint/no-unused-vars
+  4:30  warning  'FaJs' is defined but never used        @typescript-eslint/no-unused-vars
+  4:45  warning  'FaNodeJs' is defined but never used    @typescript-eslint/no-unused-vars
+  4:83  warning  'FaGoogle' is defined but never used    @typescript-eslint/no-unused-vars
+  4:93  warning  'FaDatabase' is defined but never used  @typescript-eslint/no-unused-vars
+  5:52  warning  'SiPrisma' is defined but never used    @typescript-eslint/no-unused-vars
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/components/admin/ImageUpload.tsx
+   4:20  warning  'FaTimes' is defined but never used                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+  88:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/fvfl73g71wfv/Documents/Portfolio maxime/frontend/src/components/blog/CommentSection.tsx
+  25:8   warning  React Hook useEffect has a missing dependency: 'fetchComments'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  57:18  warning  'error' is defined but never used                                                                                 @typescript-eslint/no-unused-vars
+
+✖ 70 problems (16 errors, 54 warnings)
+

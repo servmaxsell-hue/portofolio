@@ -10,8 +10,7 @@ import {
     FaSearch,
     FaCogs,
     FaCheckCircle,
-    FaTimesCircle,
-    FaEye
+    FaTimesCircle
 } from "react-icons/fa";
 
 import { useAuth } from "@/context/AuthContext";
@@ -42,7 +41,7 @@ export default function ServicesListPage() {
             const response = await fetch(`${api_url}/services?includeInactive=true`);
             const data = await response.json();
             setServices(data);
-        } catch (error) {
+        } catch (error: unknown) {
             console.error("Erreur lors de la récupération des services:", error);
         } finally {
             setLoading(false);
@@ -61,7 +60,7 @@ export default function ServicesListPage() {
                 }
             });
             setServices(services.filter(s => s.id !== id));
-        } catch (error) {
+        } catch (error: unknown) {
             console.error("Erreur lors de la suppression:", error);
             alert("Une erreur est survenue lors de la suppression.");
         }

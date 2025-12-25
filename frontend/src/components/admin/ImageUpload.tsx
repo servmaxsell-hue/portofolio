@@ -93,7 +93,7 @@ export default function ImageUpload({ onUploadSuccess, currentImage, label }: Im
                         />
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                             <span className="text-white text-sm font-medium flex items-center gap-2">
-                                <FaUpload /> Changer l'image
+                                <FaUpload /> Changer l&apos;image
                             </span>
                         </div>
                     </>

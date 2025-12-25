@@ -344,7 +344,7 @@ function ProjectEditorContent() {
                             </label>
                             <select
                                 value={formData.category}
-                                onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
+                                onChange={(e) => setFormData({ ...formData, category: e.target.value as 'web' | 'automation' | 'marketing' | 'fullstack' })}
                                 className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-blue-500/50 transition-colors appearance-none cursor-pointer"
                             >
                                 <option value="web" className="bg-[#111]">Web</option>

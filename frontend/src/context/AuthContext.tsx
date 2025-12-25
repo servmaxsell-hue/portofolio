@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
 
 interface User {
@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string | null>(null);
     const router = useRouter();
-    const pathname = usePathname();
 
     const login = useCallback((newToken: string) => {
         localStorage.setItem("adminToken", newToken);
@@ -58,27 +57,29 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             if (profile) {
                 setUser(profile);
             }
-        } catch (error: any) {
+        } catch (error) {
             console.error("Failed to refresh profile:", error);
             // Check if error message contains 401 (API Error: 401)
-            if (error.message && error.message.includes("401")) {
+            if (error instanceof Error && error.message.includes("401")) {
                 console.warn("Token expired or invalid, logging out...");
                 logout();
             }
         }
     },
-        [token, pathname, logout]
+        [token, logout]
     );
 
     useEffect(() => {
         const storedToken = localStorage.getItem("adminToken");
         if (storedToken) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setToken(storedToken);
         }
     }, []);
 
     useEffect(() => {
         if (token) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             refreshProfile();
         }
     }, [token, refreshProfile]);

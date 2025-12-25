@@ -1,11 +1,7 @@
 // API Configuration
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1';
 
-interface ApiResponse<T> {
-    success?: boolean;
-    data?: T;
-    message?: string;
-}
+
 
 // Generic fetch wrapper
 async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> {
@@ -176,13 +172,13 @@ export const api = {
 
     // User Profile
     getProfile: (token: string) =>
-        fetchApi<any>('/users/profile', {
+        fetchApi<User>('/users/profile', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             }
         }),
     updateProfile: (token: string, data: { name?: string; email?: string; password?: string }) =>
-        fetchApi<any>('/users/profile', {
+        fetchApi<User>('/users/profile', {
             method: 'PATCH',
             body: JSON.stringify(data),
             headers: {
@@ -191,5 +187,11 @@ export const api = {
             }
         }),
 };
+
+export interface User {
+    id: number;
+    name: string;
+    email: string;
+}
 
 export default api;

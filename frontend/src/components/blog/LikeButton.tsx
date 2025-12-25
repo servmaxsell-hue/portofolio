@@ -19,6 +19,7 @@ export default function LikeButton({ articleId, initialLikes }: LikeButtonProps)
         // Check local storage to see if article was already liked
         const likedArticles = JSON.parse(localStorage.getItem('liked_articles') || '[]');
         const wasLiked = likedArticles.includes(articleId);
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsLiked(wasLiked);
 
         // Only update likes count if user hasn't liked yet
@@ -89,24 +90,7 @@ export default function LikeButton({ articleId, initialLikes }: LikeButtonProps)
 
                 {/* Particle effects on click */}
                 {isAnimating && (
-                    <div className="absolute inset-0 pointer-events-none">
-                        {[...Array(6)].map((_, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 1, scale: 0, x: 0, y: 0 }}
-                                animate={{
-                                    opacity: 0,
-                                    scale: 1,
-                                    x: (Math.random() - 0.5) * 60,
-                                    y: (Math.random() - 0.5) * 60
-                                }}
-                                transition={{ duration: 0.6 }}
-                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-red-500"
-                            >
-                                <FaHeart size={10} />
-                            </motion.div>
-                        ))}
-                    </div>
+                    <ParticleEffects />
                 )}
             </motion.button>
             <span className={`font-bold text-lg ${isLiked ? 'text-red-500' : 'text-gray-500'}`}>
@@ -115,6 +99,37 @@ export default function LikeButton({ articleId, initialLikes }: LikeButtonProps)
             <p className="text-xs text-gray-400 font-medium uppercase tracking-wider">
                 {isLiked ? 'Article aimé' : 'J\'aime'}
             </p>
+        </div>
+    );
+}
+
+function ParticleEffects() {
+    // Generate static random values for this render cycle
+    // Using simple values to avoid purity issues, or a separate component could use state
+    // For visual effects, hardcoding a few variations or using stable indices is fine
+    const particles = [
+        { x: 20, y: -20 }, { x: -20, y: -20 }, { x: 20, y: 20 },
+        { x: -20, y: 20 }, { x: 0, y: -30 }, { x: 0, y: 30 }
+    ];
+
+    return (
+        <div className="absolute inset-0 pointer-events-none">
+            {particles.map((p, i) => (
+                <motion.div
+                    key={i}
+                    initial={{ opacity: 1, scale: 0, x: 0, y: 0 }}
+                    animate={{
+                        opacity: 0,
+                        scale: 1,
+                        x: p.x,
+                        y: p.y
+                    }}
+                    transition={{ duration: 0.6 }}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-red-500"
+                >
+                    <FaHeart size={10} />
+                </motion.div>
+            ))}
         </div>
     );
 }

@@ -104,10 +104,10 @@ export default function SettingsPage() {
         setAuthMessage({ type: "", text: "" });
 
         try {
-            const updatePayload: any = {
+            const updatePayload = {
                 name: authData.name,
                 email: authData.email,
-            };
+            } as { name: string; email: string; password?: string };
             if (authData.password) {
                 updatePayload.password = authData.password;
             }
@@ -247,7 +247,7 @@ export default function SettingsPage() {
 
                         <div className="flex items-center gap-4">
                             <button type="submit" disabled={savingAuth} className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-rose-600 to-orange-600 py-4 rounded-xl font-bold disabled:opacity-50 text-white cursor-pointer transition-all hover:scale-[1.02]">
-                                {savingAuth ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <><FaSave /> Mettre à jour l'accès</>}
+                                {savingAuth ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <><FaSave /> Mettre à jour l&apos;accès</>}
                             </button>
                         </div>
                         {authMessage.text && (

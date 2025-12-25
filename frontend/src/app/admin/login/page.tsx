@@ -54,9 +54,10 @@ export default function LoginPage() {
             const data = await response.json();
             console.log("Connexion réussie !");
             login(data.access_token);
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error("Erreur lors de la connexion :", err);
-            setError(err.message === "Failed to fetch" ? "Serveur inaccessible (Vérifiez le backend)" : err.message);
+            const errorMessage = err instanceof Error ? err.message : "Une erreur inconnue est survenue";
+            setError(errorMessage === "Failed to fetch" ? "Serveur inaccessible (Vérifiez le backend)" : errorMessage);
         } finally {
             setLoading(false);
         }
