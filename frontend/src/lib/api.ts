@@ -9,13 +9,20 @@ interface ApiResponse<T> {
 
 // Generic fetch wrapper
 async function fetchApi<T>(endpoint: string, options?: RequestInit): Promise<T> {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        },
+    const defaultHeaders = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    };
+
+    const config = {
         ...options,
-    });
+        headers: {
+            ...defaultHeaders,
+            ...options?.headers,
+        },
+    };
+
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
 
     if (!response.ok) {
         throw new Error(`API Error: ${response.status}`);

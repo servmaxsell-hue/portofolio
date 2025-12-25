@@ -39,9 +39,15 @@ export default function LoginPage() {
             console.log("Réponse reçue :", response.status);
 
             if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
+                const errorText = await response.text();
+                let errorData;
+                try {
+                    errorData = JSON.parse(errorText);
+                } catch {
+                    errorData = { message: errorText || `Erreur ${response.status}` };
+                }
                 console.error("Erreur API :", errorData);
-                throw new Error(`Erreur ${response.status}: Identifiants incorrects`);
+                throw new Error(errorData.message || `Erreur ${response.status}: Identifiants incorrects`);
             }
 
 

@@ -1,0 +1,93 @@
+<tbody>
+  <tr>
+    <!-- Facebook -->
+    <td style="padding:1.5pt">
+      <p class="MsoNormal">
+        <a
+          href="https://www.debeaud2026.fr/r?u=5UE-P4VTyZred9gCtBskntLpy7z5bfW2REDt1dTl0NuCHMM34XJx9G8oxxeXJqGV&e=ec86d0b5e73feb0a6bfd0ec7fa1abab2&utm_source=debeaud2026&utm_medium=email&utm_campaign=point_d_etape&n=7&test_email=1"
+          target="_blank"
+        >
+          <img
+            src="https://mail.google.com/mail/u/0?ui=2&ik=150200c30d&attid=0.1&permmsgid=msg-f:1852203422647054854&th=19b4593312a3f206&view=fimg"
+            alt="Facebook"
+            width="24"
+            height="24"
+            style="width:24px;height:24px;border:0"
+          />
+        </a>
+      </p>
+    </td>
+
+    <!-- Twitter / X -->
+    <td style="padding:1.5pt">
+      <p class="MsoNormal">
+        <a
+          href="https://www.debeaud2026.fr/r?u=bGJ9wvHZ9WBNKcXtXks54GxmuTKnF0Ha545Qu2uQ-os&e=ec86d0b5e73feb0a6bfd0ec7fa1abab2&utm_source=debeaud2026&utm_medium=email&utm_campaign=point_d_etape&n=8&test_email=1"
+          target="_blank"
+        >
+          <img
+            src="https://mail.google.com/mail/u/0?ui=2&ik=150200c30d&attid=0.2&permmsgid=msg-f:1852203422647054854&th=19b4593312a3f206&view=fimg"
+            alt="Twitter"
+            width="24"
+            height="24"
+            style="width:24px;height:24px;border:0"
+          />
+        </a>
+      </p>
+    </td>
+
+    <!-- LinkedIn -->
+    <td style="padding:1.5pt">
+      <p class="MsoNormal">
+        <a
+          href="https://www.debeaud2026.fr/r?u=fl2vlk6-r4snY-W7gqmQZNCiT94VhwfXtzUSMbDeYYiLUiY85ltPC5TdKOTacOoPKvz2t2V49S54YBmuswBX2A&e=ec86d0b5e73feb0a6bfd0ec7fa1abab2&utm_source=debeaud2026&utm_medium=email&utm_campaign=point_d_etape&n=9&test_email=1"
+          target="_blank"
+        >
+          <img
+            src="https://mail.google.com/mail/u/0?ui=2&ik=150200c30d&attid=0.3&permmsgid=msg-f:1852203422647054854&th=19b4593312a3f206&view=fimg"
+            alt="LinkedIn"
+            width="24"
+            height="24"
+            style="width:24px;height:24px;border:0"
+          />
+        </a>
+      </p>
+    </td>
+
+    <!-- Instagram -->
+    <td style="padding:1.5pt">
+      <p class="MsoNormal">
+        <a
+          href="https://www.debeaud2026.fr/r?u=cwirzZS8SUVOILXaw6mMJFFyE2hK1MLy7OSQ4w23PYjs6jRUy4OoNYTAV39Dl3GS&e=ec86d0b5e73feb0a6bfd0ec7fa1abab2&utm_source=debeaud2026&utm_medium=email&utm_campaign=point_d_etape&n=10&test_email=1"
+          target="_blank"
+        >
+          <img
+            src="https://mail.google.com/mail/u/0?ui=2&ik=150200c30d&attid=0.4&permmsgid=msg-f:1852203422647054854&th=19b4593312a3f206&view=fimg"
+            alt="Instagram"
+            width="24"
+            height="24"
+            style="width:24px;height:24px;border:0"
+          />
+        </a>
+      </p>
+    </td>
+
+    <!-- Site web -->
+    <td style="padding:1.5pt">
+      <p class="MsoNormal">
+        <a
+          href="https://www.debeaud2026.fr/?e=ec86d0b5e73feb0a6bfd0ec7fa1abab2&utm_source=debeaud2026&utm_medium=email&utm_campaign=point_d_etape&n=11&test_email=1"
+          target="_blank"
+        >
+          <img
+            src="https://mail.google.com/mail/u/0?ui=2&ik=150200c30d&attid=0.5&permmsgid=msg-f:1852203422647054854&th=19b4593312a3f206&view=fimg"
+            alt="Website"
+            width="24"
+            height="24"
+            style="width:24px;height:24px;border:0"
+          />
+        </a>
+      </p>
+    </td>
+  </tr>
+</tbody>
