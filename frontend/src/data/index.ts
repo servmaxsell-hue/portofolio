@@ -27,6 +27,9 @@ export const projects: Project[] = [
         live_url: "https://ecommerce-demo.com",
         category: "fullstack",
         featured: true,
+        problem: "L'ancien système monolithique n'était pas scalable et les temps de chargement étaient trop longs.",
+        solution: "Migration vers une architecture microservices et utilisation de Next.js pour le frontend.",
+        result: "Temps de chargement réduit de 60% et augmentation du taux de conversion de 25%."
     },
     {
         id: 2,
@@ -38,6 +41,9 @@ export const projects: Project[] = [
         github_url: "https://github.com/Maxience/crm-auto",
         category: "automation",
         featured: true,
+        problem: "Perte de temps sur des tâches manuelles répétitives et erreurs de saisie.",
+        solution: "Automatisation complète des flux de travail avec n8n connectant tous les outils.",
+        result: "Gain de 15h/semaine par employé et réduction des erreurs à <1%."
     },
     {
         id: 3,

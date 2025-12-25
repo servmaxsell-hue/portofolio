@@ -32,7 +32,9 @@ export class ProjectsService {
     }
 
     async create(data: Prisma.ProjectCreateInput) {
-        return this.prisma.project.create({ data });
+        return this.prisma.project.create({
+            data
+        });
     }
 
     async update(id: number, data: Prisma.ProjectUpdateInput) {

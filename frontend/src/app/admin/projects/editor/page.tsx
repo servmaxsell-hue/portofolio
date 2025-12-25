@@ -232,7 +232,7 @@ function ProjectEditorContent() {
 
                         <div className="space-y-4">
                             <label className="text-sm font-medium text-red-400 flex items-center gap-2">
-                                🚫 Le Problème (Avant)
+                                🚫 Le Problème (Avant) <span className="text-xs bg-red-500/20 px-2 py-0.5 rounded text-red-300">Important</span>
                             </label>
                             <textarea
                                 value={formData.problem}
@@ -244,7 +244,7 @@ function ProjectEditorContent() {
 
                         <div className="space-y-4">
                             <label className="text-sm font-medium text-blue-400 flex items-center gap-2">
-                                ⚡ La Solution (Votre Intervention)
+                                ⚡ La Solution (Votre Intervention) <span className="text-xs bg-blue-500/20 px-2 py-0.5 rounded text-blue-300">Important</span>
                             </label>
                             <textarea
                                 value={formData.solution}
@@ -256,7 +256,7 @@ function ProjectEditorContent() {
 
                         <div className="space-y-4">
                             <label className="text-sm font-medium text-green-400 flex items-center gap-2">
-                                📈 Les Résultats (ROI)
+                                📈 Les Résultats (ROI) <span className="text-xs bg-green-500/20 px-2 py-0.5 rounded text-green-300">Important</span>
                             </label>
                             <textarea
                                 value={formData.result}

@@ -4,7 +4,7 @@ generator client {
   output = "../node_modules/.prisma/client"
 }
 
-// Final check for problem, solution, result fields
+// Support both MySQL (production) and SQLite (local development)
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
@@ -27,11 +27,8 @@ model Project {
   id          Int      @id @default(autoincrement())
   title       String
   slug        String   @unique
-  description String   @db.LongText
-  problem     String?  @db.LongText
-  solution    String?  @db.LongText
-  result      String?  @db.LongText
-  image       String?  @db.LongText
+  description String   
+  image       String?  
   tech_stack  String
   github_url  String?
   live_url    String?
@@ -40,6 +37,10 @@ model Project {
   order       Int      @default(0)
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
+  
+  problem     String?  @db.LongText
+  solution    String?  @db.LongText
+  result      String?  @db.LongText
 
   @@map("projects")
 }
@@ -49,8 +50,8 @@ model Article {
   title        String
   slug         String    @unique
   excerpt      String
-  content      String    @db.LongText
-  image        String?   @db.LongText
+  content      String    
+  image        String?   
   tags         String?
   read_time    Int       @default(5)
   likes        Int       @default(0)

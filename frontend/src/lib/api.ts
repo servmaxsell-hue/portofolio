@@ -39,7 +39,7 @@ export interface Project {
     title: string;
     slug: string;
     image: string;
-    tech_stack: string[] | string;
+    tech_stack: string[];
     description: string;
     problem?: string;
     solution?: string;
