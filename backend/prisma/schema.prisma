@@ -28,7 +28,7 @@ model Project {
   title       String
   slug        String   @unique
   description String   
-  image       String?  
+  image       String?  @db.LongText
   tech_stack  String
   github_url  String?
   live_url    String?
@@ -51,7 +51,7 @@ model Article {
   slug         String    @unique
   excerpt      String
   content      String    
-  image        String?   
+  image        String?   @db.LongText
   tags         String?
   read_time    Int       @default(5)
   likes        Int       @default(0)
@@ -114,7 +114,7 @@ model Contact {
 model Setting {
   id    Int    @id @default(autoincrement())
   key   String @unique
-  value String
+  value String @db.LongText
 
   @@map("settings")
 }
