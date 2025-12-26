@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaCode, FaRobot, FaChartLine, FaCheck, FaArrowRight, FaSpinner, FaRocket, FaHandshake, FaLightbulb, FaCogs, FaQuestionCircle, FaSearch, FaPencilRuler, FaLaptopCode, FaPaperPlane } from 'react-icons/fa';
 import api, { Service } from '@/lib/api';
-import { services as staticServices } from '@/data';
+import { services as staticServices } from '@/data/services-static';
 
 // Map icons
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -73,11 +73,14 @@ export default function ServicesPage() {
                     ...s,
                     features: typeof s.features === 'string' ? JSON.parse(s.features || '[]') : (s.features || []),
                 }));
-                setServices(processedData);
+                if (processedData.length > 0) {
+                    setServices(processedData);
+                } else {
+                    setServices(staticServices);
+                }
             } catch (error) {
                 console.error('Failed to load services:', error);
-                // Retry after 2 seconds
-                setTimeout(fetchServices, 2000);
+                setServices(staticServices);
             } finally {
                 setLoading(false);
             }
