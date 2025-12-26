@@ -3,11 +3,13 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { FaArrowLeft, FaCheck, FaCode, FaRobot, FaChartLine, FaArrowRight, FaStar, FaQuoteLeft, FaPhone, FaEnvelope } from 'react-icons/fa';
 import api from '@/lib/api';
-import { services as staticServices } from '@/data';
+import { services as staticServices } from '@/data/services-static';
 
 interface PageProps {
     params: Promise<{ slug: string }>;
 }
+
+export const revalidate = 0;
 
 const iconMap: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
     code: FaCode,
