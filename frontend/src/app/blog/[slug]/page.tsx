@@ -11,6 +11,8 @@ interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
+export const revalidate = 0;
+
 export async function generateMetadata({ params }: PageProps) {
     const { slug } = await params;
     let article;
