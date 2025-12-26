@@ -406,6 +406,53 @@ textarea:focus {
   margin: 1.5rem 0;
 }
 
+.prose-interprete table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+.prose-interprete th {
+  background: #667eea;
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.prose-interprete td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.prose-interprete tr:nth-child(even) {
+  background: #f7fafc;
+}
+
+.prose-interprete a {
+  color: inherit;
+  text-decoration: underline;
+  transition: opacity 0.2s;
+}
+
+.prose-interprete a:hover {
+  opacity: 0.7;
+}
+
+.prose-interprete code {
+  background: #f7fafc;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9em;
+  color: #d63384;
+}
+
+.prose-interprete li {
+  margin-bottom: 0.5rem;
+}
+
 /* Fix for editor preview in dark mode */
 .admin-preview .prose-interprete {
   color: rgba(255, 255, 255, 0.9);

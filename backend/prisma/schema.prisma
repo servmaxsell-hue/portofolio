@@ -49,8 +49,8 @@ model Article {
   id           Int       @id @default(autoincrement())
   title        String
   slug         String    @unique
-  excerpt      String
-  content      String    
+  excerpt      String    @db.LongText
+  content      String    @db.LongText
   image        String?   @db.LongText
   tags         String?
   read_time    Int       @default(5)
