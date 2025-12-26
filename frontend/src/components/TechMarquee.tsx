@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPhp, FaLaravel, FaPython, FaGoogle, FaDatabase, FaWordpress, FaVuejs, FaGithub, FaShopify } from "react-icons/fa";
-import { SiNextdotjs, SiTailwindcss, SiTypescript, SiPrisma, SiPostgresql, SiN8N, SiSemrush, SiMake } from "react-icons/si";
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPhp, FaLaravel, FaPython, FaGoogle, FaDatabase, FaWordpress, FaVuejs, FaGithub, FaShopify, FaDocker, FaWaveSquare } from "react-icons/fa";
+import { SiNextdotjs, SiTailwindcss, SiTypescript, SiPrisma, SiPostgresql, SiN8N, SiSemrush, SiMake, SiTwilio } from "react-icons/si";
 
 const techs = [
     { name: "Next.js", icon: SiNextdotjs },
@@ -20,6 +20,9 @@ const techs = [
     { name: "Python", icon: FaPython },
     { name: "PHP", icon: FaPhp },
     { name: "PostgreSQL", icon: SiPostgresql },
+    { name: "Docker", icon: FaDocker },
+    { name: "Twilio", icon: SiTwilio },
+    { name: "Eleven Labs", icon: FaWaveSquare },
 ];
 
 export default function TechMarquee() {
