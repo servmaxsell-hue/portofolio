@@ -73,9 +73,11 @@ export default function ServicesPage() {
                     ...s,
                     features: typeof s.features === 'string' ? JSON.parse(s.features || '[]') : (s.features || []),
                 }));
-                setServices(processedData.length > 0 ? processedData : staticServices);
-            } catch {
-                setServices(staticServices);
+                setServices(processedData);
+            } catch (error) {
+                console.error('Failed to load services:', error);
+                // Retry after 2 seconds
+                setTimeout(fetchServices, 2000);
             } finally {
                 setLoading(false);
             }
