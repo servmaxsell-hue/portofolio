@@ -6,7 +6,8 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaGithub, FaLinkedin, FaTwitter, FaCode, FaRobot, FaChartLine, FaCheck, FaStar, FaQuoteLeft, FaSpinner, FaDownload, FaEnvelope } from 'react-icons/fa';
 import api, { Project, Article, Service } from '@/lib/api';
-import { projects as staticProjects, articles as staticArticles, services as staticServices, skills } from '@/data';
+import { projects as staticProjects, articles as staticArticles, skills } from '@/data';
+import { services as staticServices } from '@/data/services-static';
 import { Reveal } from '@/components/Reveal';
 import TechMarquee from '@/components/TechMarquee';
 
