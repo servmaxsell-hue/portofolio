@@ -111,7 +111,7 @@ export default function AboutPage() {
                             {[
                                 { value: '5+', label: 'Années d\'expérience' },
                                 { value: '50+', label: 'Projets réalisés' },
-                                { value: '30+', label: 'Clients satisfaits' },
+                                { value: '48', label: 'Clients satisfaits' },
                             ].map((stat, index) => (
                                 <motion.div
                                     key={stat.label}

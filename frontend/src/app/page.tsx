@@ -21,7 +21,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 const stats = [
   { value: "5+", label: "Années d'expérience" },
   { value: "50+", label: "Projets réalisés" },
-  { value: "30+", label: "Clients satisfaits" },
+  { value: "48", label: "Clients satisfaits" },
   { value: "100%", label: "Engagement qualité" },
 ];
 
