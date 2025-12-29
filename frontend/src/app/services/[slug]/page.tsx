@@ -358,7 +358,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                                     <FaArrowRight className="ml-2" />
                                 </Link>
                                 <a
-                                    href="mailto:dossoumaxime888@gmail.com"
+                                    href="mailto:contact@paulmaximedossou.com"
                                     className="inline-flex items-center justify-center px-8 py-4 bg-transparent text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/10 transition-all"
                                 >
                                     <FaEnvelope className="mr-2" />

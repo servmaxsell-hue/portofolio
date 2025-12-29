@@ -24,7 +24,7 @@ export default function LegalPage() {
                             </p>
                             <ul className="space-y-2">
                                 <li><strong>Propriétaire du site :</strong> Paul Maxime Dossou</li>
-                                <li><strong>Contact :</strong> dossoumaxime888@gmail.com</li>
+                                <li><strong>Contact :</strong> contact@paulmaximedossou.com</li>
                                 <li><strong>Hébergeur :</strong> Vercel Inc. - 440 N Barranca Ave #4133 Covina, CA 91723</li>
                             </ul>
                         </section>

@@ -55,7 +55,7 @@ const Footer = () => {
                                 <FaFacebook size={28} />
                             </a>
                             <a
-                                href="mailto:dossoumaxime888@gmail.com"
+                                href="mailto:contact@paulmaximedossou.com"
                                 className="text-gray-400 hover:text-[#e94560] transition-colors transform hover:scale-110"
                                 aria-label="Email"
                             >
@@ -96,8 +96,8 @@ const Footer = () => {
                         <h4 className="font-bold text-gray-900 mb-6 text-lg">Contact</h4>
                         <ul className="space-y-4 text-gray-600">
                             <li>
-                                <a href="mailto:dossoumaxime888@gmail.com" className="hover:text-[#e94560] transition-colors font-medium">
-                                    dossoumaxime888@gmail.com
+                                <a href="mailto:contact@paulmaximedossou.com" className="hover:text-[#e94560] transition-colors font-medium">
+                                    contact@paulmaximedossou.com
                                 </a>
                             </li>
                             <li>

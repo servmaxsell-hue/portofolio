@@ -4,35 +4,35 @@ import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class MailService {
-    private transporter;
+  private transporter;
 
-    constructor(private configService: ConfigService) {
-        this.transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 465,
-            secure: true, // true for 465, false for other ports
-            auth: {
-                user: 'dossoumaxime888@gmail.com',
-                pass: 'seut zddm qtei dkyz',
-            },
-        });
-    }
+  constructor(private configService: ConfigService) {
+    this.transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: 'contact@paulmaximedossou.com',
+        pass: 'seut zddm qtei dkyz',
+      },
+    });
+  }
 
-    async sendContactEmail(data: { name: string; email: string; subject?: string; message: string }) {
-        const date = new Date().toLocaleDateString('fr-FR', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-        });
+  async sendContactEmail(data: { name: string; email: string; subject?: string; message: string }) {
+    const date = new Date().toLocaleDateString('fr-FR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
 
-        const mailOptions = {
-            from: `"Paul Maxime Dossou - Portfolio" <dossoumaxime888@gmail.com>`,
-            to: 'dossoumaxime888@gmail.com',
-            replyTo: data.email,
-            subject: `🚀 Nouveau Contact : ${data.subject || 'Sans sujet'}`,
-            html: `
+    const mailOptions = {
+      from: `"Paul Maxime Dossou - Portfolio" <contact@paulmaximedossou.com>`,
+      to: 'contact@paulmaximedossou.com',
+      replyTo: data.email,
+      subject: `🚀 Nouveau Contact : ${data.subject || 'Sans sujet'}`,
+      html: `
         <div style="background-color: #f8fafc; padding: 40px 20px; font-family: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6;">
           <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
             <!-- Header -->
@@ -78,14 +78,14 @@ export class MailService {
           </div>
         </div>
       `,
-        };
+    };
 
 
-        try {
-            await this.transporter.sendMail(mailOptions);
-            console.log('Email sent successfully');
-        } catch (error) {
-            console.error('Error sending email:', error);
-        }
+    try {
+      await this.transporter.sendMail(mailOptions);
+      console.log('Email sent successfully');
+    } catch (error) {
+      console.error('Error sending email:', error);
     }
+  }
 }

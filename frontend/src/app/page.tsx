@@ -858,7 +858,7 @@ export default function Home() {
           <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-6 max-w-4xl mx-auto">
             <div className="bg-[#1a1a2e] text-white px-8 py-4 rounded-full flex items-center gap-4 shadow-xl">
               <FaEnvelope />
-              <span className="font-semibold">dossoumaxime888@gmail.com</span>
+              <span className="font-semibold">contact@paulmaximedossou.com</span>
             </div>
             <p className="text-gray-500 text-center md:text-left">
               Pour toute autre question, n&apos;hésitez pas à me contacter.

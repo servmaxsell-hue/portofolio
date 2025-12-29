@@ -102,10 +102,10 @@ function ContactFormContent() {
                                     <div>
                                         <p className="font-medium text-gray-900">Email</p>
                                         <a
-                                            href="mailto:dossoumaxime888@gmail.com"
+                                            href="mailto:contact@paulmaximedossou.com"
                                             className="text-gray-600 hover:text-[#e94560] transition-colors"
                                         >
-                                            dossoumaxime888@gmail.com
+                                            contact@paulmaximedossou.com
                                         </a>
                                     </div>
                                 </div>
