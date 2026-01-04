@@ -13,21 +13,37 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL('https://paulmaximedossou.com'),
   title: {
-    default: "Paul Maxime Dossou | Expert Développeur Fullstack & Marketing Digital",
+    default: "Paul Maxime Dossou | Développeur Fullstack & Expert Automatisation Bénin",
     template: "%s | Paul Maxime Dossou"
   },
-  description: "Boostez votre croissance avec Paul Maxime Dossou, Développeur Web Fullstack (Laravel, Next.js) et Expert Marketing Digital. Solutions sur mesure en développement d'applications, automatisation (n8n, Make) et campagnes Ads haute performance.",
+  description: "Développeur Web Fullstack à Cotonou, Bénin. Expert en automatisation (n8n, Make, Zapier), création d'applications Laravel/Next.js, stratégies Marketing Digital et Google Ads. Transformez vos processus avec l'automatisation intelligente.",
   keywords: [
-    "Expert Développeur Fullstack",
-    "Développeur Laravel Freelance",
-    "Expert Next.js React",
-    "Consultant Marketing Digital",
-    "Spécialiste Google Ads",
-    "Automation Expert n8n Make",
-    "Création Application Web",
-    "Stratégie Digitale ROI",
+    // Automatisation - Focus principal
+    "expert automatisation n8n",
+    "consultant make.com bénin",
+    "automatisation workflow",
+    "intégration api automatisation",
+    "zapier alternative afrique",
+    "no-code automation expert",
+    // Développement
+    "développeur fullstack bénin",
+    "développeur web cotonou",
+    "développeur laravel freelance",
+    "expert next.js react",
+    "création application web bénin",
+    "développeur javascript fullstack",
+    // Marketing Digital
+    "expert marketing digital cotonou",
+    "consultant google ads bénin",
+    "stratégie digitale afrique",
+    "spécialiste seo bénin",
+    // Géographique
+    "agence web cotonou",
+    "freelance tech bénin",
+    "développeur afrique francophone",
+    // Marque
     "Paul Maxime Dossou",
-    "Portfolio Développeur Web"
+    "Maxience développeur"
   ],
   authors: [{ name: "Paul Maxime Dossou", url: "https://paulmaximedossou.com" }],
   creator: "Paul Maxime Dossou",
@@ -55,60 +71,160 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "fr_FR",
+    locale: "fr_BJ",
+    alternateLocale: ["fr_FR"],
     url: "https://paulmaximedossou.com",
-    siteName: "Paul Maxime Dossou - Solutions Web & Marketing",
-    title: "Paul Maxime Dossou | Expert Solutions Digitales",
-    description: "Développement d'applications Web performantes et stratégies Marketing Digital ROI-driven. Découvrez mon expertise en Laravel, Next.js et Google Ads.",
+    siteName: "Paul Maxime Dossou - Automatisation & Développement Web Bénin",
+    title: "Paul Maxime Dossou | Expert Automatisation n8n & Développeur Fullstack Bénin",
+    description: "Développeur Fullstack et Expert en Automatisation à Cotonou, Bénin. Création d'applications web sur mesure, automatisation de processus (n8n, Make), stratégies Marketing Digital performantes.",
     images: [
       {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "Paul Maxime Dossou - Expert Digital",
+        alt: "Paul Maxime Dossou - Expert Automatisation & Développement Web Bénin",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Paul Maxime Dossou | Expert Développeur & Marketing",
-    description: "Développement Web & Stratégies Marketing Digital",
+    title: "Paul Maxime Dossou | Expert Automatisation n8n & Dev Fullstack",
+    description: "Automatisation intelligente, Développement Web & Marketing Digital à Cotonou, Bénin",
     images: ["/logo.png"],
   },
   alternates: {
     canonical: "https://paulmaximedossou.com",
+    languages: {
+      'fr': 'https://paulmaximedossou.com',
+    },
   },
   category: "technology",
+  other: {
+    'geo.region': 'BJ-LI',
+    'geo.placename': 'Cotonou',
+    'geo.position': '6.3654;2.4183',
+  },
 };
 
-// JSON-LD Structured Data
+// JSON-LD Structured Data - Enhanced for SEO
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Paul Maxime Dossou",
-  url: "https://paulmaximedossou.com",
-  logo: "https://paulmaximedossou.com/logo.png",
-  image: "https://paulmaximedossou.com/logo.png",
-  sameAs: [
-    "https://github.com/Maxience",
-    "https://www.linkedin.com/in/paul-maxime-dossou-88a516258/"
-  ],
-  jobTitle: "Développeur Web Fullstack & Expert Marketing Digital",
-  description: "Développeur Web Fullstack spécialisé en Laravel, Next.js et Expert en Marketing Digital avec une vision orientée business.",
-  address: {
-    "@type": "PostalAddress",
-    "addressLocality": "Cotonou",
-    "addressCountry": "BJ"
-  },
-  priceRange: "$$$",
-  knowsAbout: [
-    "Développement Web",
-    "Laravel",
-    "Next.js",
-    "React",
-    "n8n",
-    "Google Ads",
-    "Marketing Digital"
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://paulmaximedossou.com/#service",
+      name: "Paul Maxime Dossou - Services Web & Automatisation",
+      url: "https://paulmaximedossou.com",
+      logo: "https://paulmaximedossou.com/logo.png",
+      image: "https://paulmaximedossou.com/logo.png",
+      description: "Services de développement web fullstack, automatisation de processus métier et marketing digital au Bénin.",
+      priceRange: "$$-$$$",
+      areaServed: {
+        "@type": "Country",
+        "name": "Bénin",
+        "sameAs": "https://en.wikipedia.org/wiki/Benin"
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Cotonou",
+        addressRegion: "Littoral",
+        addressCountry: "BJ"
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 6.3654,
+        longitude: 2.4183
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Services Digitaux",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Automatisation de Processus",
+              description: "Automatisation intelligente avec n8n, Make et Zapier pour optimiser vos workflows"
+            }
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Développement Web Fullstack",
+              description: "Création d'applications web sur mesure avec Laravel et Next.js"
+            }
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Marketing Digital",
+              description: "Stratégies Google Ads et SEO pour maximiser votre ROI"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://paulmaximedossou.com/#person",
+      name: "Paul Maxime Dossou",
+      alternateName: "Maxience",
+      url: "https://paulmaximedossou.com",
+      image: "https://paulmaximedossou.com/logo.png",
+      sameAs: [
+        "https://github.com/Maxience",
+        "https://www.linkedin.com/in/paul-maxime-dossou-88a516258/"
+      ],
+      jobTitle: "Développeur Web Fullstack & Expert Automatisation",
+      worksFor: {
+        "@type": "Organization",
+        name: "Freelance"
+      },
+      knowsAbout: [
+        "Automatisation n8n",
+        "Make.com",
+        "Zapier",
+        "Développement Web",
+        "Laravel",
+        "Next.js",
+        "React",
+        "Python",
+        "API Integration",
+        "Google Ads",
+        "Marketing Digital",
+        "SEO"
+      ],
+      knowsLanguage: [
+        {
+          "@type": "Language",
+          name: "Français",
+          alternateName: "fr"
+        },
+        {
+          "@type": "Language",
+          name: "Anglais",
+          alternateName: "en"
+        }
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Cotonou",
+        addressCountry: "BJ"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://paulmaximedossou.com/#website",
+      url: "https://paulmaximedossou.com",
+      name: "Paul Maxime Dossou - Portfolio",
+      description: "Portfolio professionnel de Paul Maxime Dossou, développeur fullstack et expert en automatisation",
+      publisher: {
+        "@id": "https://paulmaximedossou.com/#person"
+      },
+      inLanguage: "fr-BJ"
+    }
   ]
 };
 

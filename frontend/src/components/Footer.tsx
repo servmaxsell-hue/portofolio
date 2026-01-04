@@ -23,8 +23,8 @@ const Footer = () => {
                             <span className="text-2xl font-bold gradient-text">Paul Maxime Dossou</span>
                         </Link>
                         <p className="text-gray-600 max-w-md leading-relaxed text-lg">
-                            Développeur Web Fullstack et Expert en Marketing Digital, passionné par la création
-                            d&apos;expériences numériques innovantes et performantes.
+                            Développeur Web Fullstack et Expert en Automatisation n8n/Make, passionné par la création
+                            d&apos;expériences numériques innovantes et l&apos;optimisation de workflows au Bénin.
                         </p>
                         <div className="flex gap-6">
                             <a
@@ -86,6 +86,11 @@ const Footer = () => {
                             <li>
                                 <Link href="/services" className="text-gray-600 hover:text-[#e94560] transition-colors font-medium">
                                     Services
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/automatisation" className="text-gray-600 hover:text-[#e94560] transition-colors font-medium">
+                                    Automatisation
                                 </Link>
                             </li>
                         </ul>

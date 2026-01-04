@@ -133,83 +133,102 @@ export default function ProjectsPage() {
         ? projects
         : projects.filter(p => p.category === activeCategory);
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": filteredProjects.slice(0, 10).map((project, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "url": `https://paulmaximedossou.com/projects/${project.slug}`,
+            "name": project.title,
+            "description": project.description
+        }))
+    };
+
     return (
-        <div className="pt-32 pb-20">
-            <div className="container mx-auto px-6">
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="max-w-4xl mx-auto text-center mb-16"
-                >
-                    <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                        Mes <span className="gradient-text">Projets</span>
-                    </h1>
-                    <p className="text-xl text-gray-600">
-                        Une sélection de mes meilleures réalisations techniques et créatives
-                    </p>
-                </motion.div>
-
-                {/* Filter */}
-                <div className="flex flex-wrap justify-center gap-4 mb-12">
-                    {categories.map((category) => (
-                        <button
-                            key={category.id}
-                            onClick={() => setActiveCategory(category.id)}
-                            className={`px-6 py-2 rounded-full font-medium transition-all ${activeCategory === category.id
-                                ? 'bg-gradient-to-r from-[#1a1a2e] to-[#0f3460] text-white shadow-lg scale-105'
-                                : 'bg-white text-gray-600 hover:bg-gray-50'
-                                }`}
-                        >
-                            {category.label}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Projects Grid */}
-                {loading ? (
-                    <div className="flex justify-center py-20">
-                        <FaSpinner className="animate-spin text-4xl text-gray-400" />
-                    </div>
-                ) : (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <div className="pt-32 pb-20">
+                <div className="container mx-auto px-6">
+                    {/* Header */}
                     <motion.div
-                        layout
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="max-w-4xl mx-auto text-center mb-16"
                     >
-                        <AnimatePresence>
-                            {filteredProjects.map((project, index) => (
-                                <ProjectCard key={project.id} project={project} index={index} />
-                            ))}
-                        </AnimatePresence>
-                    </motion.div>
-                )}
-
-                {/* Empty State */}
-                {!loading && filteredProjects.length === 0 && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="text-center py-20"
-                    >
-                        <p className="text-gray-500 text-lg">
-                            Aucun projet trouvé dans cette catégorie.
+                        <h1 className="text-5xl md:text-6xl font-bold mb-6">
+                            Mes <span className="gradient-text">Projets</span>
+                        </h1>
+                        <p className="text-xl text-gray-600">
+                            Expertise en <span className="font-semibold text-gray-900">Développement Fullstack</span>, <span className="font-semibold text-gray-900">Automatisation n8n</span> et <span className="font-semibold text-gray-900">Marketing Digital</span>.
+                            Découvrez comment je transforme des idées en solutions performantes au Bénin.
                         </p>
                     </motion.div>
-                )}
 
-                {/* CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mt-20"
-                >
-                    <h3 className="text-2xl font-bold mb-6">Un projet en tête ?</h3>
-                    <Link href="/contact" className="btn-primary">
-                        Parlons-en
-                    </Link>
-                </motion.div>
+                    {/* Filter */}
+                    <div className="flex flex-wrap justify-center gap-4 mb-12">
+                        {categories.map((category) => (
+                            <button
+                                key={category.id}
+                                onClick={() => setActiveCategory(category.id)}
+                                className={`px-6 py-2 rounded-full font-medium transition-all ${activeCategory === category.id
+                                    ? 'bg-gradient-to-r from-[#1a1a2e] to-[#0f3460] text-white shadow-lg scale-105'
+                                    : 'bg-white text-gray-600 hover:bg-gray-50'
+                                    }`}
+                            >
+                                {category.label}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Projects Grid */}
+                    {loading ? (
+                        <div className="flex justify-center py-20">
+                            <FaSpinner className="animate-spin text-4xl text-gray-400" />
+                        </div>
+                    ) : (
+                        <motion.div
+                            layout
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        >
+                            <AnimatePresence>
+                                {filteredProjects.map((project, index) => (
+                                    <ProjectCard key={project.id} project={project} index={index} />
+                                ))}
+                            </AnimatePresence>
+                        </motion.div>
+                    )}
+
+                    {/* Empty State */}
+                    {!loading && filteredProjects.length === 0 && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="text-center py-20"
+                        >
+                            <p className="text-gray-500 text-lg">
+                                Aucun projet trouvé dans cette catégorie.
+                            </p>
+                        </motion.div>
+                    )}
+
+                    {/* CTA */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center mt-20"
+                    >
+                        <h3 className="text-2xl font-bold mb-6">Un projet en tête ?</h3>
+                        <Link href="/contact" className="btn-primary">
+                            Parlons-en
+                        </Link>
+                    </motion.div>
+                </div>
             </div>
-        </div>
+        </>
     );
 }

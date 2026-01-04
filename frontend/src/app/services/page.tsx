@@ -56,7 +56,7 @@ const jsonLd = {
             "@type": "Service",
             "name": service.title,
             "description": service.description,
-            "url": `https://maximedossou.com/services/${service.slug}`
+            "url": `https://paulmaximedossou.com/services/${service.slug}`
         }
     }))
 };
@@ -121,7 +121,7 @@ export default function ServicesPage() {
                         </h1>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
                             J'accompagne les entreprises ambitieuses avec des solutions digitales
-                            <span className="font-semibold text-gray-900"> performantes</span> et <span className="font-semibold text-gray-900">sur-mesure</span>.
+                            <span className="font-semibold text-gray-900"> performantes</span>, <span className="font-semibold text-gray-900">sur-mesure</span> et <span className="font-semibold text-gray-900">totalement automatisées</span>.
                         </p>
                     </motion.div>
 

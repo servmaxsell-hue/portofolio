@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaGithub, FaLinkedin, FaTwitter, FaCode, FaRobot, FaChartLine, FaCheck, FaStar, FaQuoteLeft, FaSpinner, FaDownload, FaEnvelope } from 'react-icons/fa';
+import { FaArrowRight, FaGithub, FaLinkedin, FaTwitter, FaCode, FaRobot, FaChartLine, FaCheck, FaStar, FaQuoteLeft, FaSpinner, FaDownload, FaEnvelope, FaDatabase } from 'react-icons/fa';
+import { SiMake, SiZapier } from 'react-icons/si';
 import api, { Project, Article, Service } from '@/lib/api';
 import { projects as staticProjects, articles as staticArticles, skills } from '@/data';
 import { services as staticServices } from '@/data/services-static';
@@ -170,7 +171,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-xl md:text-2xl lg:text-3xl text-gray-600 mb-6 max-w-3xl mx-auto font-light"
             >
-              Développeur Web <span className="font-semibold text-gray-900">Fullstack</span> & Expert <span className="font-semibold text-gray-900">Marketing Digital</span>
+              Développeur Web <span className="font-semibold text-gray-900">Fullstack</span> & Expert <span className="font-semibold text-gray-900">Automatisation n8n / Make</span>
             </motion.p>
 
             <motion.p
@@ -403,6 +404,88 @@ export default function Home() {
               <FaArrowRight className="ml-2" />
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Automation Highlight Section - NEW for SEO */}
+      <section className="section bg-gradient-to-br from-[#f8faff] to-white overflow-hidden" aria-label="Expertise en Automatisation">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:w-1/2"
+            >
+              <div className="w-20 h-20 bg-purple-100 rounded-3xl flex items-center justify-center mb-8">
+                <FaRobot className="text-4xl text-purple-600" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                Gagnez du temps avec <br />
+                <span className="gradient-text">l&apos;automatisation intelligente</span>
+              </h2>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Marre des tâches répétitives ? J&apos;utilise <strong>n8n</strong>, <strong>Make.com</strong> et <strong>Zapier</strong> pour créer des workflows qui travaillent pour vous 24h/24.
+                Synchronisez vos données, automatisez votre prospection et optimisez vos processus métier sans effort.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                    <FaCheck />
+                  </div>
+                  <span className="font-medium">Jusqu&apos;à 20h gagnées / semaine</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                    <FaCheck />
+                  </div>
+                  <span className="font-medium">Élimination des erreurs de saisie</span>
+                </div>
+              </div>
+
+              <Link href="/automatisation" className="btn-primary inline-flex items-center">
+                Voir mes solutions d&apos;automatisation
+                <FaArrowRight className="ml-2" />
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="lg:w-1/2 relative"
+            >
+              <div className="relative z-10 grid grid-cols-2 gap-4">
+                <div className="space-y-4 pt-12">
+                  <div className="card p-6 bg-white shadow-xl rotate-3 hover:rotate-0 transition-transform">
+                    <SiMake className="text-4xl text-[#6D4AFF] mb-4" />
+                    <h4 className="font-bold">Make.com</h4>
+                    <p className="text-sm text-gray-500">Scénarios complexes</p>
+                  </div>
+                  <div className="card p-6 bg-white shadow-xl -rotate-2 hover:rotate-0 transition-transform">
+                    <FaRobot className="text-4xl text-[#EA4B71] mb-4" />
+                    <h4 className="font-bold">n8n.io</h4>
+                    <p className="text-sm text-gray-500">Self-hosted & Scalable</p>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="card p-6 bg-white shadow-xl -rotate-6 hover:rotate-0 transition-transform">
+                    <SiZapier className="text-4xl text-[#FF4F00] mb-4" />
+                    <h4 className="font-bold">Zapier</h4>
+                    <p className="text-sm text-gray-500">Intégrations rapides</p>
+                  </div>
+                  <div className="card p-6 bg-white shadow-xl rotate-1 hover:rotate-0 transition-transform">
+                    <FaDatabase className="text-4xl text-blue-500 mb-4" />
+                    <h4 className="font-bold">Sync Data</h4>
+                    <p className="text-sm text-gray-500">Multi-plateformes</p>
+                  </div>
+                </div>
+              </div>
+              {/* Blobs background */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-purple-500/5 rounded-full blur-3xl -z-0" />
+            </motion.div>
+          </div>
         </div>
       </section>
       {/* Why Collaborate With Me Section - SEO Rich */}
