@@ -54,8 +54,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
+    icon: "/icon.png",
+    shortcut: "/icon.png",
     apple: "/logo.png",
   },
   robots: {
@@ -238,8 +238,6 @@ export default function RootLayout({
   return (
     <html lang="fr" className="scroll-smooth">
       <head>
-        <link rel="icon" href="/logo.png" />
-        <link rel="apple-touch-icon" href="/logo.png" />
         <meta name="theme-color" content="#1a1a2e" />
         <script
           type="application/ld+json"
