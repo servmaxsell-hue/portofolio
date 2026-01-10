@@ -118,3 +118,16 @@ model Setting {
 
   @@map("settings")
 }
+
+model SeoRecommendation {
+  id          Int      @id @default(autoincrement())
+  page_path   String
+  keyword     String
+  reason      String   @db.LongText
+  suggested_action String
+  status      String   @default("pending") // pending, applied, dismissed
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("seo_recommendations")
+}

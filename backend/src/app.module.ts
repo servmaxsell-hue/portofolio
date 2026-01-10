@@ -16,6 +16,7 @@ import { CommentsModule } from './comments/comments.module';
 import { SettingsModule } from './settings/settings.module';
 import { MailModule } from './mail/mail.module';
 import { ConfigModule } from '@nestjs/config';
+import { SeoModule } from './seo/seo.module';
 
 @Module({
   imports: [
@@ -40,7 +41,8 @@ import { ConfigModule } from '@nestjs/config';
     CommentsModule,
     SettingsModule,
     ConfigModule.forRoot({ isGlobal: true }),
-    MailModule
+    MailModule,
+    SeoModule
   ],
 
 
