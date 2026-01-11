@@ -58,15 +58,23 @@ export default function SeoPage() {
                 fetch(`${api_url}/seo/recommendations`, { headers })
             ]);
 
-            const [dataAn, dataSc, dataRec] = await Promise.all([
-                resAn.json(),
-                resSc.json(),
-                resRec.json()
-            ]);
+            // Handle 404 or other errors
+            if (!resAn.ok || !resSc.ok || !resRec.ok) {
+                console.error("One or more SEO endpoints returned an error", {
+                    analytics: resAn.status,
+                    searchConsole: resSc.status,
+                    recommendations: resRec.status
+                });
+                return;
+            }
+
+            const dataAn = await resAn.json();
+            const dataSc = await resSc.json();
+            const dataRec = await resRec.json();
 
             setAnalytics(dataAn);
-            setKeywords(dataSc || []);
-            setRecommendations(dataRec || []);
+            setKeywords(Array.isArray(dataSc) ? dataSc : []);
+            setRecommendations(Array.isArray(dataRec) ? dataRec : []);
         } catch (error) {
             console.error("Error fetching SEO data:", error);
         } finally {
