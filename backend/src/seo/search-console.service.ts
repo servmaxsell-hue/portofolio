@@ -17,7 +17,7 @@ export class SearchConsoleService {
         });
 
         this.sc = google.searchconsole({ version: 'v1', auth });
-        this.siteUrl = this.configService.get<string>('SITE_URL');
+        this.siteUrl = this.configService.get<string>('SITE_URL') || '';
     }
 
     async getTopKeywords(startDate: string, endDate: string) {
@@ -38,11 +38,11 @@ export class SearchConsoleService {
             });
 
             return response.data.rows?.map(row => ({
-                keyword: row.keys[0],
-                clicks: row.clicks,
-                impressions: row.impressions,
-                ctr: row.ctr,
-                position: row.position,
+                keyword: row.keys?.[0] || 'Unknown',
+                clicks: row.clicks || 0,
+                impressions: row.impressions || 0,
+                ctr: row.ctr || 0,
+                position: row.position || 0,
             })) || [];
         } catch (error) {
             this.logger.error(`Error fetching Search Console data: ${error.message}`);

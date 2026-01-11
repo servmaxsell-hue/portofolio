@@ -24,19 +24,23 @@ export class SeoController {
         @Query('startDate') startDate?: string,
         @Query('endDate') endDate?: string,
     ) {
-        return this.gaService.getPageViews(startDate, endDate);
+        const end = endDate || new Date().toISOString().split('T')[0];
+        const start = startDate || new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+        return this.gaService.getPageViews(start, end);
     }
 
     @Get('search-console')
     @ApiOperation({ summary: 'Get Top Keywords from GSC' })
     async getSearchConsole(
-        @Query('startDate') startDate: string,
-        @Query('endDate') endDate: string,
+        @Query('startDate') startDate?: string,
+        @Query('endDate') endDate?: string,
     ) {
-        return this.scService.getTopKeywords(startDate, endDate);
+        const end = endDate || new Date().toISOString().split('T')[0];
+        const start = startDate || new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+        return this.scService.getTopKeywords(start, end);
     }
 
-    @Get('analyze')
+    @Post('analyze')
     @ApiOperation({ summary: 'Run SEO analysis and generate recommendations' })
     async analyze() {
         return this.seoOptService.runAnalysis();

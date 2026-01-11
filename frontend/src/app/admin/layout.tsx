@@ -15,7 +15,8 @@ import {
     FaBars,
     FaTimes,
     FaComments,
-    FaTools
+    FaTools,
+    FaChartLine
 } from "react-icons/fa";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -60,6 +61,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     const menuItems = [
         { icon: FaHome, label: "Dashboard", href: "/admin/dashboard" },
+        { icon: FaChartLine, label: "SEO Performance", href: "/admin/seo" },
         { icon: FaProjectDiagram, label: "Projets", href: "/admin/projects" },
         { icon: FaNewspaper, label: "Articles", href: "/admin/articles" },
         { icon: FaComments, label: "Commentaires", href: "/admin/comments" },
